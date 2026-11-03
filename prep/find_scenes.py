@@ -12,7 +12,7 @@ Only PROVISIONAL (PR) granules are used, since mixing BETA and PROVISIONAL is
 discouraged by ASF. Writes one CSV of granules per event plus pairs.csv.
 
 Usage:
-    python scripts/find_scenes.py data/events.json --out data/scenes
+    python prep/find_scenes.py data/events.json --out data/scenes
 """
 import argparse
 import csv

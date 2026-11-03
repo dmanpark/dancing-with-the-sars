@@ -1,12 +1,14 @@
 # Review of the "Dancing with the SARS" research line
 
-Checked on 3 Nov 2026 against the Space Apps site, ASF's NISAR documentation and a live query of the ASF catalog (`scripts/find_scenes.py`). Space Apps starts on 14 Nov, eleven days from now.
+Checked on 3 Nov 2026 against the Space Apps site, ASF's NISAR documentation and a live query of the ASF catalog (`prep/find_scenes.py`). Space Apps starts on 14 Nov, eleven days from now.
+
+**Update, later on 3 Nov:** the plan that came out of this review is in [concept.md](concept.md), and the schedule is in [playbook.md](playbook.md). Two findings since the first pass: Sentinel-2 water maps bracket the Gandak NISAR pass at −8 h and +16 h, and the north Bihar floods replace Bangladesh as the held-out event.
 
 ## Verdict
 
 **Go on SAR flood mapping, but change the research question.**
 
-The data question is settled. PROVISIONAL L-band GCOV pre/post pairs exist for every 2026 flood I checked, and one of them is close to ideal: NISAR imaged the Gandak River floodplain in Bihar on 28 Sep 2026 at 13:07 UTC, one day after the river hit a record level at the Devghat gauge, and Sentinel-1D passed over the same area about 11 hours later. That gives you an L-band and a C-band look at the same flood on nearly the same day. The July floods in southeastern Bangladesh have a second pairing like that (Sentinel-1D 13 hours after NISAR), which makes them the natural held-out event.
+The data question is settled. PROVISIONAL L-band GCOV pre/post pairs exist for every 2026 flood I checked, and one of them is close to ideal: NISAR imaged the Gandak River floodplain in Bihar on 28 Sep 2026 at 13:07 UTC, one day after the river hit a record level at the Devghat gauge, and Sentinel-1D passed over the same area about 11 hours later. That gives you an L-band and a C-band look at the same flood on nearly the same day. The early-September floods in north Bihar have an even tighter pairing (Sentinel-1 38 minutes before NISAR, on both the pre and post dates), which makes them the held-out event.
 
 The research question as written does not survive a literature check. Directions 1 to 4 in the doc (physics-aware masking, reliability under shift, abstention, decision-aware ranking) each already exist for Sentinel-1, some of them as operational products. What I could not find anywhere is the same work done with L-band. So the question I would take into the event is:
 
@@ -72,9 +74,9 @@ A real fix needs field reports, or ALOS-2 / ALOS-4 L-band scenes acquired within
 **Go**, if three checks pass by Sunday 8 Nov:
 
 1. Someone with an Earthdata login downloads the Gandak pair (track 149, frame 75, 16 Sep and 28 Sep) and the HH log-ratio shows flooding along the Gandak where NASA's MODIS image of 29 Sep does.
-2. GFM or DSWx-S1 output exists for the Sentinel-1D pass of 29 Sep 00:19 UTC over that frame.
+2. ~~GFM or DSWx-S1 output exists for the Sentinel-1D pass of 29 Sep 00:19 UTC over that frame.~~ Passed: OPERA DSWx-S1 has 15 tiles for that pass, and DSWx-HLS has Sentinel-2 water maps at −8 h and +16 h.
 3. The GCOV mask layer explains the stripes, so you know whether they are no-data or low-signal.
 
-What would downgrade the idea: if the L-band map and the GFM map agree everywhere, including in vegetated floodplain, then H1 in [plan.md](plan.md) is dead. Fall back to H2 (reliability on open water across two events), which is still a defensible result and still uses NISAR-specific physics.
+What would downgrade the idea: if the L-band map and the GFM map agree everywhere, including in vegetated floodplain, then H1 in [concept.md](concept.md) is dead. Fall back to H0 and H2 (open-water head-to-head, and reliability across two events), which is still a defensible result and still uses NISAR-specific physics.
 
 I did not investigate CLPS. With the SAR data confirmed, I would not spend prep days on it.

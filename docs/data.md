@@ -4,7 +4,7 @@ Everything in the scene tables came from a live ASF query on 3 Nov 2026. Re-run 
 
 ```bash
 pip install -r requirements.txt
-python scripts/find_scenes.py data/events.json --out data/scenes
+python prep/find_scenes.py data/events.json --out data/scenes
 ```
 
 ## What is public, and which part to use
@@ -20,7 +20,7 @@ Source: [ASF availability overview](https://nisar-docs.asf.alaska.edu/availabili
 
 So the usable window is **17 Jun 2026 to now**, minus a **permanent gap from 2026-07-27 22:03 UTC to 2026-08-10 00:55 UTC**. No acquisitions will ever exist inside that gap.
 
-NISAR images each location twice every 12 days (once ascending, once descending), through cloud ([Earthdata, 21 Jul 2026](https://www.earthdata.nasa.gov/news/nisar-l-band-data-released-expanding-record-surface-changes)). Download of the HDF5 files needs an Earthdata login. The browse PNGs do not, which is what `scripts/quicklook.py` uses.
+NISAR images each location twice every 12 days (once ascending, once descending), through cloud ([Earthdata, 21 Jul 2026](https://www.earthdata.nasa.gov/news/nisar-l-band-data-released-expanding-record-surface-changes)). Download of the HDF5 files needs an Earthdata login. The browse PNGs do not, which is what `prep/quicklook.py` uses.
 
 ## Candidate events with real scene pairs
 
@@ -30,7 +30,9 @@ Pairs share direction, track, frame and frequency-A bandwidth, and at least two 
 |---|---|---|---|---|---|---|---|---|
 | **Gandak, Bihar (lead)** | Desc | 149 / 75 | 20 MHz | 16 Sep (QP) → **28 Sep 13:07 UTC** (DH) | 1 day after the 27 Sep record crest | 12 d | **+11 h** (S1D, 29 Sep 00:19) | 9.9 GB |
 | Gandak | Asc | 26 / 15 | 40 MHz | 19 Sep (DH) → 1 Oct (DH) | Recession | 12 d | −71 h | 14.1 GB |
-| **SE Bangladesh (held-out)** | Asc | 69 / 13 | 40 MHz | 30 Jun (DH) → **12 Jul 23:21 UTC** (DH) | Onset day | 12 d | **+13 h** (S1D, 13 Jul 12:03) | 12.4 GB |
+| **North Bihar, Kosi / Bagmati (held-out)** | Desc | 48 / 75 | 20 MHz | 28 Aug (QP) → **9 Sep 12:58 UTC** (DH) | Floods ongoing statewide (44 lakh affected on 10 Sep) | 12 d | **−38 min** (S1D RTC, 9 Sep 12:20; also −38 min on 28 Aug) | 11.0 GB |
+| North Bihar | Desc | 120 / 76 | 20 MHz | 21 Aug (QP) → 2 Sep (QP) | Early in the event; quad-pol both dates | 12 d | −61 h | 17.9 GB |
+| SE Bangladesh (far-shift stretch) | Asc | 69 / 13 | 40 MHz | 30 Jun (DH) → **12 Jul 23:21 UTC** (DH) | Onset day | 12 d | **+13 h** (S1D, 13 Jul 12:03) | 12.4 GB |
 | SE Bangladesh | Desc | 91 / 77 | 20 MHz | 20 Jun (QP) → 14 Jul (DV) | 2 days after onset | 24 d | −25 h | 9.9 GB |
 | Assam | Asc | 40 / 15 | 40 MHz | 10 Jul (DH) → 22 Jul (DH) | 3 days after onset, near the peak | 12 d | none within 3 days | 14.2 GB |
 | Assam | Desc | 163 / 75 | 40 MHz | 25 Jun (DH) → 19 Jul (DH) | Onset day | 24 d | −37 h | 14.3 GB |
@@ -48,14 +50,16 @@ Polarization codes: DH = HH + HV, DV = VV + VH, QP = quad-pol (full covariance, 
 ### Why Gandak leads
 
 - NISAR's 28 Sep pass came one day after the river reached a record level at Devghat on 27 Sep ([NASA Earth Observatory](https://science.nasa.gov/earth/earth-observatory/rains-swamp-the-gandak-river/)).
-- **Sentinel-1D passed at 00:19 UTC on 29 Sep, about 11 hours after NISAR.** That is close enough to treat the flood as unchanged, and it gives a C-band reference that GFM should have processed (confirming that is check 2 in the review). Sentinel-1D also passed at 12:29 UTC on 26 Sep, before the crest.
+- **Sentinel-1D passed at 00:19 UTC on 29 Sep, about 11 hours after NISAR**, and OPERA's DSWx-S1 water map exists for it (15 MGRS tiles). One more DSWx-S1 tile, in the northeast corner, comes from a pass 54 minutes before NISAR.
+- **Sentinel-2 imaged the frame 8 hours before and 16 hours after NISAR**, and OPERA's DSWx-HLS water maps exist for both passes. On 29 Sep four tiles are 5 to 12% cloud. The pre-event date has the same structure (Sentinel-2 at −8 h and +16 h, Sentinel-1 at +11 h). See "Reference products found" below.
 - NASA Earth Observatory published MODIS false-color images from 20 Sep and 29 Sep, which you can cite for the story and use as a coarse sanity check.
 - The frame (roughly 25.4°N to 28.1°N, 81.9°E to 85.1°E) covers most of the Gandak's course in India: flat, agricultural, with riparian vegetation. Good for open-water detection, and the vegetated edges are where the L-band question lives.
 - The pre-event date is quad-pol, so the pre-flood polarimetric state of the floodplain is fully measured.
 
 ### Where the others fall short
 
-- **Bangladesh** is the best second event because it is the only other flood with a Sentinel-1 pass within 13 hours of a NISAR post scene. Its weaknesses: the NISAR pass is on the onset day (12 Jul), while Chattogram's heaviest rain (412.3 mm) fell on 15 Jul, so the flood was still growing; and the frame mixes coastal plain with the Chittagong Hill Tracts and a large city. It is also 40 MHz where Gandak is 20 MHz, which is a useful test of whether anything tuned on Gandak transfers. I have not looked at its browse images yet.
+- **North Bihar** is the held-out event. Same 20 MHz mode and same kind of landscape as Gandak, a different river system three weeks earlier, and Sentinel-1 38 minutes before NISAR on both dates. OPERA made no DSWx-S1 maps for those two passes, so you run DSWx-S1 yourself on the RTC-S1 bursts (56 per date). Optical (HLS) is mostly cloudy, 46% at best. The frame covers the Kosi and Bagmati plains of north Bihar; it stops just north of the Ganga mainstem districts. Because it is the same region, the honest claim is "transfers across two Bihar floods," not "generalizes."
+- **Bangladesh** becomes the far-shift stretch goal: a Sentinel-1 pass 13 hours after NISAR, but no OPERA water map for it (RTC-S1 exists). Its weaknesses: the NISAR pass is on the onset day (12 Jul), while Chattogram's heaviest rain (412.3 mm) fell on 15 Jul, so the flood was still growing; and the frame mixes coastal plain with the Chittagong Hill Tracts and a large city. It is also 40 MHz where Gandak is 20 MHz, which is a useful test of whether anything tuned on Gandak transfers. I have not looked at its browse images yet.
 - **Assam**: good pairs, but the affected population peaked around 24 to 26 Jul ([Wikipedia: 2026 Assam floods](https://en.wikipedia.org/wiki/2026_Assam_floods)) and the permanent data gap starts on 27 Jul. No Sentinel-1 pass falls within 3 days of the 22 Jul NISAR scene. Good for the story, weak for scoring.
 - **Indiana**: quad-pol on both dates, US data sources (USGS gauges) for context. But the near-peak pair has a 24-day baseline, so crop growth between 23 Jul and 16 Aug will contaminate change in the farmland. Sentinel-1D passed on 18 Aug, 2 days after NISAR, during recession.
 - **Rasuwa**: a debris flow in a steep Himalayan valley, where layover and shadow dominate. Track 48 has Sentinel-1D 37 minutes before NISAR, the closest L-band/C-band timing in this list, but over a 48-day NISAR baseline. A good "where SAR fails" example, a poor flood-extent case.
@@ -68,7 +72,8 @@ Event dates for Indiana, Bangladesh and Rasuwa come from [Wikipedia: Weather of 
 |---|---|---|---|
 | Copernicus GFM | Sentinel-1 C-band, global, automatic | Flood extent, ensemble likelihood and exclusion mask for the 29 Sep Gandak pass | Same physics family as NISAR, so errors correlate in urban areas and under wind roughening. Blind under canopy. |
 | [OPERA DSWx-S1](https://podaac.jpl.nasa.gov/dataset/OPERA_L3_DSWX-S1_V1) | Sentinel-1, 30 m, near-global, forward production since Sep 2024 | Independent algorithm from GFM | Same C-band blind spots |
-| OPERA DSWx-HLS | Landsat / Sentinel-2 | Truly independent physics | Monsoon cloud. Check for clear scenes within 2 days before relying on it. |
+| OPERA DSWx-HLS | Landsat / Sentinel-2 | Truly independent physics, and passes 8 h before and 16 h after both Gandak NISAR dates | Cloud (5 to 58% per tile on 28 and 29 Sep). Blind under canopy like C-band. |
+| OPERA RTC-S1 | Sentinel-1 backscatter, 30 m bursts | Lets you run DSWx-S1 yourself where OPERA didn't (north Bihar, Bangladesh) | You own the processing errors |
 | MODIS (NASA EO, 29 Sep) | Optical, 250 m to 500 m | Same-day, citable | Far too coarse for pixel scoring |
 
 Use time offsets explicitly. A flood map from a different day is not ground truth for this day. Report the offset in hours for every comparison, and separate permanent water (JRC occurrence, or the pre-event NISAR date) from new inundation before scoring.
@@ -91,3 +96,30 @@ From ASF's [PROVISIONAL known issues](https://nisar-docs.asf.alaska.edu/provisio
 - Pixel spacing depends on range bandwidth; ASF lists 10, 20 or 80 m. Read the actual posting from the HDF5 rather than assuming it.
 - No layover/shadow layer in GCOV. Compute one from the Copernicus GLO-30 DEM and the incidence-angle geometry, or take it from the matching GSLC.
 - Files run about 2 to 9 GB each. Harmony's GCOV dataset (variable) subsetting has been complete since June 2026; spatial subsetting is pending for Q4 2026 ([ASF roadmap](https://nisar-docs.asf.alaska.edu/roadmap)). Pull only `HHHH`, `HVHV` and `mask` for the first pass.
+
+## Reference products found (CMR, 3 Nov)
+
+From `prep/find_references.py`; every granule and URL is in `data/manifest.csv`, and the raw query output is in `data/refs/`.
+
+| Event, date | Product | Time (UTC) | Offset from NISAR | Granules |
+|---|---|---|---|---|
+| Gandak post, 28 Sep 13:07 | DSWx-HLS (Sentinel-2) | 28 Sep 05:00 | −8 h | 11 |
+| | DSWx-S1 | 28 Sep 12:13 | −1 h | 1 (NE corner) |
+| | DSWx-S1 | 29 Sep 00:18 | +11 h | 15 |
+| | DSWx-HLS (Sentinel-2) | 29 Sep 05:20 | +16 h | 11 (four at 5 to 12% cloud) |
+| Gandak pre, 16 Sep 13:07 | DSWx-HLS | 16 Sep 05:10 | −8 h | 17 |
+| | DSWx-S1 | 16 Sep 12:13 | −1 h | 1 |
+| | DSWx-S1 | 17 Sep 00:18 | +11 h | 15 |
+| | DSWx-HLS | 17 Sep 05:00 | +16 h | 10 |
+| North Bihar post, 9 Sep 12:58 | RTC-S1 | 9 Sep 12:20 | −0.6 h | 56 bursts |
+| | DSWx-S1 | 12 Sep 00:10 | +59 h | 15 |
+| North Bihar pre, 28 Aug 12:58 | RTC-S1 | 28 Aug 12:20 | −0.6 h | 56 bursts |
+
+## Time series on the lead track
+
+Track 149, frame 75, descending, all 13:07 UTC: 23 Aug (20 MHz QP), 4 Sep (20 DH), 16 Sep (20 QP), 28 Sep (20 DH), 10 Oct (20 DH), 22 Oct (40 DH). The three 20 MHz DH dates are color-comparable in the browse images ([quicklook](../quicklooks/gandak_T149_F075_DH_20260904_20260928_20261010.png)): the flood zone along the river widens by 28 Sep and spreads further by 10 Oct. The stripe positions change from date to date.
+
+## S-band
+
+ASF's metadata sets `jointObservation = True` on every Bihar scene listed here. I read that as the L- and S-band radars imaging together, which is NISAR's design over India; confirm it on Bhoonidhi. ISRO releases S-band GCOV for acquisitions from 8 Jul 2026 onward ([ISRO](https://www.isro.gov.in/ISRO%5FEN/NISARS_Band_SAR_Data_Products_Release.html)), and the portal needs registration.
+

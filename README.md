@@ -1,41 +1,49 @@
 # PROJECT_DWTS
 
-Team repo for NASA Space Apps 2026, challenge **Dancing with the SARS**: an interactive app built on NISAR radar data that tracks surface change. Event: 14 to 15 Nov 2026. Submissions close Sunday 15 Nov at 11:59 PM local time.
+Team repo for NASA Space Apps 2026, challenge **Dancing with the SARS**. Event: 14 to 15 Nov 2026. Submissions close Sunday 15 Nov at 11:59 PM local event time.
 
-## Where things stand (3 Nov)
+## The project
 
-Pre-event investigation. No submission code yet.
+**Wallflower** (working name): finding the flood water that C-band radar can't see, with NISAR L-band data over Bihar's 2026 Gandak flood. It also shows how far to trust each pixel and which villages to check first.
 
-- **Read first:** [docs/review.md](docs/review.md). Verdict on the research line, what to change, go/no-go checks due Sunday 8 Nov.
-- [docs/data.md](docs/data.md): verified NISAR availability, real pre/post scene pairs for five 2026 events, references, known issues.
-- [docs/literature.md](docs/literature.md): first-pass literature matrix and the gap.
-- [docs/plan.md](docs/plan.md): three ranked hypotheses, the minimum viable experiment, the schedule, rules to check.
+- **[docs/concept.md](docs/concept.md)**: what to build, why, the hypotheses, the 30-second video storyboard, how it maps to the judging criteria. Start here.
+- **[docs/playbook.md](docs/playbook.md)**: pre-event checklist with dates, roles, the hour-by-hour plan for the 39 hours, fallbacks, submission checklist.
+- [docs/data.md](docs/data.md): verified NISAR scene pairs, reference products and their timing, known data issues.
+- [docs/review.md](docs/review.md): the critique of the original research line that led here.
+- [docs/literature.md](docs/literature.md): literature matrix and the gap.
 
-Lead case: Gandak River flood, Bihar. NISAR track 149 frame 75, 16 Sep → 28 Sep 2026, with Sentinel-1D 11 hours after the post scene.
+![Gandak, same-mode NISAR browse images, 4 Sep, 28 Sep, 10 Oct 2026](quicklooks/gandak_T149_F075_DH_20260904_20260928_20261010.png)
 
-![Gandak browse pair](quicklooks/gandak_T149_F075_20260916_20260928.png)
+Three same-mode NISAR browse images of the Gandak floodplain (track 149, frame 75). The dark vertical bands are swath gaps, and they move between dates.
 
-The browse colors differ because the two dates use different polarization modes (quad-pol, then dual-pol). The dark vertical stripes are most likely SweepSAR swath gaps; see data.md.
+## Status (3 Nov)
+
+Pre-event. Data located, references located, plan written. No submission code: the Space Apps FAQ asks teams to start the actual work when the hackathon begins.
 
 ## Layout
 
 ```
-data/events.json          candidate events (point, onset, search window)
-data/scenes/              ASF query output: every granule per event, plus pairs.csv
-scripts/find_scenes.py    search ASF for PROVISIONAL GCOV and pair pre/post scenes
-scripts/quicklook.py      side-by-side of the public browse PNGs for a pair
-quicklooks/               saved quicklooks
-docs/                     review, data, literature, plan
+data/events.json        candidate events (point, onset, search window)
+data/scenes/            ASF query output: every NISAR granule per event, and pairs.csv
+data/refs/              CMR query output: Sentinel-1 / Sentinel-2 reference products near each NISAR date
+data/manifest.csv       everything to download before the event, with roles and URLs
+prep/                   pre-event reconnaissance tools (cite them if used during the event)
+  find_scenes.py        search ASF for PROVISIONAL GCOV and pair pre/post scenes
+  find_references.py    find DSWx-S1, DSWx-HLS, RTC-S1 and HLS near a NISAR time
+  download.py           download manifest rows with an Earthdata login
+  quicklook.py          side-by-side of the public browse PNGs for a pair
+quicklooks/             saved browse comparisons
+docs/
 ```
 
 ## Quickstart
 
 ```bash
 pip install -r requirements.txt
-python scripts/find_scenes.py data/events.json --out data/scenes
-python scripts/quicklook.py <PRE_SCENE_ID> <POST_SCENE_ID> --out quicklooks/pair.png
+python prep/download.py --role lead-pre,lead-post --dry-run   # what the lead pair needs
+python prep/download.py --role lead-pre,lead-post --out downloads
 ```
 
-Searching and browse images need no login. Downloading the HDF5 files needs a NASA Earthdata account.
+Searching (ASF, CMR) and browse images need no login. Downloads need a free NASA Earthdata account. `downloads/` is git-ignored; the full manifest is about 40 GB of NISAR data plus reference tiles.
 
 Space Apps distributes original submission content under Apache 2.0; add a LICENSE once the team agrees.

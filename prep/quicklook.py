@@ -6,7 +6,7 @@ depends on the polarization mode, so colors are NOT comparable between a
 quad-pol and a dual-pol date. Use it to check coverage, gaps and gross change.
 
 Usage:
-    python scripts/quicklook.py PRE_SCENE POST_SCENE --out quicklooks/pair.png
+    python prep/quicklook.py PRE_SCENE POST_SCENE --out quicklooks/pair.png
 """
 import argparse
 import io
