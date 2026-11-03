@@ -29,7 +29,7 @@ Pairs share direction, track, frame and frequency-A bandwidth, and at least two 
 | Event | Pass | Track / frame | Freq A | Pre → post | Post date vs event | Baseline | Nearest Sentinel-1 | Pair size |
 |---|---|---|---|---|---|---|---|---|
 | **Gandak, Bihar (lead)** | Desc | 149 / 75 | 20 MHz | 16 Sep (QP) → **28 Sep 13:07 UTC** (DH) | 1 day after the 27 Sep record crest | 12 d | **+11 h** (S1D, 29 Sep 00:19) | 9.9 GB |
-| Gandak | Asc | 26 / 15 | 40 MHz | 19 Sep (DH) → 1 Oct (DH) | Recession | 12 d | −71 h | 14.1 GB |
+| Gandak | Asc | 26 / 15 | 40 MHz | 19 Sep (DH) → 1 Oct 23:47 UTC (DH) | After the embankment breaches of 29 to 30 Sep | 12 d | −71 h | 14.1 GB |
 | **North Bihar, Kosi / Bagmati (held-out)** | Desc | 48 / 75 | 20 MHz | 28 Aug (QP) → **9 Sep 12:58 UTC** (DH) | Floods ongoing statewide (44 lakh affected on 10 Sep) | 12 d | **−38 min** (S1D RTC, 9 Sep 12:20; also −38 min on 28 Aug) | 11.0 GB |
 | North Bihar | Desc | 120 / 76 | 20 MHz | 21 Aug (QP) → 2 Sep (QP) | Early in the event; quad-pol both dates | 12 d | −61 h | 17.9 GB |
 | SE Bangladesh (far-shift stretch) | Asc | 69 / 13 | 40 MHz | 30 Jun (DH) → **12 Jul 23:21 UTC** (DH) | Onset day | 12 d | **+13 h** (S1D, 13 Jul 12:03) | 12.4 GB |
