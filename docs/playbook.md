@@ -17,7 +17,7 @@ The FAQ asks teams to start the actual work when the hackathon begins. So this l
 
 - [ ] `python prep/download.py --role lead-pre,lead-post --out downloads` (about 10 GB). Open both files in QGIS or a throwaway notebook. Does HH darken along the Gandak on 28 Sep where the Sentinel-2 image of 29 Sep shows water?
 - [ ] Look at the `mask` layer across the dark stripes. No-data or low signal?
-- [x] OPERA water maps exist for the Sentinel-1 and Sentinel-2 passes around both Gandak dates (checked 3 Nov, listed in `data/manifest.csv`).
+- [x] OPERA water maps exist for the Sentinel-1 and optical (Sentinel-2, Landsat 8) passes around both Gandak dates (checked 3 Nov, listed in `data/manifest.csv`).
 - [ ] Delete the throwaway notebook. The point was to look, not to build.
 
 If the first check fails, call it early. The fallback is the Gandak ascending track (26, 40 MHz) or Assam, and `docs/data.md` lists both.

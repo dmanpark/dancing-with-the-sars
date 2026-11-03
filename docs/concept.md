@@ -19,7 +19,7 @@ The original doc wanted "uncertainty-aware change detection with decision priori
 | | Pre-event | Post-event |
 |---|---|---|
 | NISAR L-band | 16 Sep 13:07 (quad-pol) | 28 Sep 13:07 (dual-pol) |
-| Sentinel-2 optical (OPERA DSWx-HLS water maps) | 16 Sep 05:10 (−8 h), 17 Sep 05:00 (+16 h) | 28 Sep 05:00 (−8 h), 29 Sep 05:20 (+16 h) |
+| Optical (OPERA DSWx-HLS water maps) | Sentinel-2B 16 Sep 05:10 (−8 h); Landsat 8 17 Sep 05:00 (+16 h) | Sentinel-2C and Landsat 8 28 Sep 04:41 to 05:00 (−8 h); Sentinel-2B 29 Sep 05:20 (+16 h) |
 | Sentinel-1 C-band (OPERA DSWx-S1 water maps) | 17 Sep 00:18 (+11 h) | 29 Sep 00:18 (+11 h) |
 
 On 29 Sep, four Sentinel-2 tiles over the frame have 5 to 12% cloud. Optical imagery is a referee neither radar depends on. Score both radars only on pixels where the two optical passes (−8 h and +16 h) agree, and the timing differences stop favoring either sensor. That's a fair L-band vs C-band comparison on open water, and I found nothing published like it.
@@ -42,7 +42,7 @@ A static web map, hosted on GitHub Pages, no login, still working when global ju
 
 Ranked by order of build, not by importance.
 
-**H0, open-water head-to-head.** Against stable Sentinel-2 water (DSWx-HLS, both passes agree, cloud-free), NISAR new-water F1 is at least Sentinel-1's. This is the cleanest result and the foundation for everything else. Report it with 5 km block-bootstrap intervals, whichever radar wins.
+**H0, open-water head-to-head.** Against stable optical water (DSWx-HLS, both passes agree, cloud-free), NISAR new-water F1 is at least Sentinel-1's. This is the cleanest result and the foundation for everything else. Report it with 5 km block-bootstrap intervals, whichever radar wins.
 
 **H1, hidden water.** In vegetated pixels, the L-band flag rate is clearly higher on low ground connected to the river (HAND < 2 m) than on high ground (HAND > 15 m), and much of the low-ground signal falls where DSWx-S1 says dry. High ground cannot flood, so its flag rate is the false-alarm floor from crop growth and soil moisture. Optical cannot see under canopy either, so this is a signal test, not an accuracy test. Say that on screen.
 
@@ -63,7 +63,7 @@ Ranked by order of build, not by importance.
 Fill these in on Sunday. Write them first on the project page, in this order:
 
 1. "Sentinel-1 called **___ km²** of low-lying vegetated floodplain dry; NISAR L-band shows flood evidence there."
-2. "On open water, NISAR scored **F1 ___** vs Sentinel-1's **___**, both judged against Sentinel-2."
+2. "On open water, NISAR scored **F1 ___** vs Sentinel-1's **___**, both judged against Sentinel-2 and Landsat."
 3. "On a flood it never saw (north Bihar, 9 Sep), the trust map predicted NISAR's errors with **AUROC ___** vs **___** for the raw signal."
 4. "Fifty inspections from the check-first list reach **___%** of flooded settlements vs **___%** ranked by change alone."
 

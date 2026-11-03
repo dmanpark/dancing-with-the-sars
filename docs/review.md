@@ -41,7 +41,7 @@ My search was about fifteen targeted queries, not the 8 to 12 paper review the d
 
 This is the part I am least sure how to solve.
 
-Optical imagery cannot see water under a forest canopy. The independent references you can get for the 2026 events are Sentinel-1 products (GFM, OPERA DSWx-S1) and coarse MODIS, and C-band is also blind under canopy. So the claim "L-band finds flooding that C-band misses" cannot be scored against any reference map available to you during the hackathon. The reference will call those pixels dry.
+Optical imagery cannot see water under a forest canopy. The independent references you can get for the 2026 events are Sentinel-1 products (OPERA DSWx-S1, GFM) and optical water maps (OPERA DSWx-HLS from Sentinel-2 and Landsat, coarse MODIS). C-band and optical are both blind under canopy. So the claim "L-band finds flooding that C-band misses" cannot be scored against any reference map available to you during the hackathon. The reference will call those pixels dry.
 
 What you can do in 39 hours:
 
@@ -74,7 +74,7 @@ A real fix needs field reports, or ALOS-2 / ALOS-4 L-band scenes acquired within
 **Go**, if three checks pass by Sunday 8 Nov:
 
 1. Someone with an Earthdata login downloads the Gandak pair (track 149, frame 75, 16 Sep and 28 Sep) and the HH log-ratio shows flooding along the Gandak where NASA's MODIS image of 29 Sep does.
-2. ~~GFM or DSWx-S1 output exists for the Sentinel-1D pass of 29 Sep 00:19 UTC over that frame.~~ Passed: OPERA DSWx-S1 has 15 tiles for that pass, and DSWx-HLS has Sentinel-2 water maps at −8 h and +16 h.
+2. ~~GFM or DSWx-S1 output exists for the Sentinel-1D pass of 29 Sep 00:19 UTC over that frame.~~ Passed: OPERA DSWx-S1 has 15 tiles for that pass, and DSWx-HLS has optical water maps (Sentinel-2 and Landsat 8) at −8 h and +16 h.
 3. The GCOV mask layer explains the stripes, so you know whether they are no-data or low-signal.
 
 What would downgrade the idea: if the L-band map and the GFM map agree everywhere, including in vegetated floodplain, then H1 in [concept.md](concept.md) is dead. Fall back to H0 and H2 (open-water head-to-head, and reliability across two events), which is still a defensible result and still uses NISAR-specific physics.

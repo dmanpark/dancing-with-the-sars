@@ -51,7 +51,7 @@ Polarization codes: DH = HH + HV, DV = VV + VH, QP = quad-pol (full covariance, 
 
 - NISAR's 28 Sep pass came one day after the river reached a record level at Devghat on 27 Sep ([NASA Earth Observatory](https://science.nasa.gov/earth/earth-observatory/rains-swamp-the-gandak-river/)).
 - **Sentinel-1D passed at 00:19 UTC on 29 Sep, about 11 hours after NISAR**, and OPERA's DSWx-S1 water map exists for it (15 MGRS tiles). One more DSWx-S1 tile, in the northeast corner, comes from a pass 54 minutes before NISAR.
-- **Sentinel-2 imaged the frame 8 hours before and 16 hours after NISAR**, and OPERA's DSWx-HLS water maps exist for both passes. On 29 Sep four tiles are 5 to 12% cloud. The pre-event date has the same structure (Sentinel-2 at −8 h and +16 h, Sentinel-1 at +11 h). See "Reference products found" below.
+- **Sentinel-2 imaged the frame 8 hours before and 16 hours after NISAR**, and OPERA's DSWx-HLS water maps exist for both passes. On 29 Sep four tiles are 5 to 12% cloud. Part of the 28 Sep −8 h coverage comes from Landsat 8 (4 tiles) rather than Sentinel-2C (7 tiles). The pre-event date has nearly the same structure: Sentinel-2B at −8 h, Landsat 8 at +16 h, Sentinel-1 at +11 h. See "Reference products found" below.
 - NASA Earth Observatory published MODIS false-color images from 20 Sep and 29 Sep, which you can cite for the story and use as a coarse sanity check.
 - The frame (roughly 25.4°N to 28.1°N, 81.9°E to 85.1°E) covers most of the Gandak's course in India: flat, agricultural, with riparian vegetation. Good for open-water detection, and the vegetated edges are where the L-band question lives.
 - The pre-event date is quad-pol, so the pre-flood polarimetric state of the floodplain is fully measured.
@@ -70,7 +70,7 @@ Event dates for Indiana, Bangladesh and Rasuwa come from [Wikipedia: Weather of 
 
 | Reference | Sensor | Strength | Weakness |
 |---|---|---|---|
-| Copernicus GFM | Sentinel-1 C-band, global, automatic | Flood extent, ensemble likelihood and exclusion mask for the 29 Sep Gandak pass | Same physics family as NISAR, so errors correlate in urban areas and under wind roughening. Blind under canopy. |
+| Copernicus GFM | Sentinel-1 C-band, global, automatic | Flood extent, ensemble likelihood and exclusion mask (availability for these passes not checked) | Same physics family as NISAR, so errors correlate in urban areas and under wind roughening. Blind under canopy. |
 | [OPERA DSWx-S1](https://podaac.jpl.nasa.gov/dataset/OPERA_L3_DSWX-S1_V1) | Sentinel-1, 30 m, near-global, forward production since Sep 2024 | Independent algorithm from GFM | Same C-band blind spots |
 | OPERA DSWx-HLS | Landsat / Sentinel-2 | Truly independent physics, and passes 8 h before and 16 h after both Gandak NISAR dates | Cloud (5 to 58% per tile on 28 and 29 Sep). Blind under canopy like C-band. |
 | OPERA RTC-S1 | Sentinel-1 backscatter, 30 m bursts | Lets you run DSWx-S1 yourself where OPERA didn't (north Bihar, Bangladesh) | You own the processing errors |
@@ -103,14 +103,14 @@ From `prep/find_references.py`; every granule and URL is in `data/manifest.csv`,
 
 | Event, date | Product | Time (UTC) | Offset from NISAR | Granules |
 |---|---|---|---|---|
-| Gandak post, 28 Sep 13:07 | DSWx-HLS (Sentinel-2) | 28 Sep 05:00 | −8 h | 11 |
+| Gandak post, 28 Sep 13:07 | DSWx-HLS (Sentinel-2C 7, Landsat 8 4) | 28 Sep 04:41 to 05:00 | −8 h | 11 |
 | | DSWx-S1 | 28 Sep 12:13 | −1 h | 1 (NE corner) |
 | | DSWx-S1 | 29 Sep 00:18 | +11 h | 15 |
-| | DSWx-HLS (Sentinel-2) | 29 Sep 05:20 | +16 h | 11 (four at 5 to 12% cloud) |
-| Gandak pre, 16 Sep 13:07 | DSWx-HLS | 16 Sep 05:10 | −8 h | 17 |
+| | DSWx-HLS (Sentinel-2B) | 29 Sep 05:20 | +16 h | 11 (four at 5 to 12% cloud) |
+| Gandak pre, 16 Sep 13:07 | DSWx-HLS (Sentinel-2B) | 16 Sep 05:10 | −8 h | 17 |
 | | DSWx-S1 | 16 Sep 12:13 | −1 h | 1 |
 | | DSWx-S1 | 17 Sep 00:18 | +11 h | 15 |
-| | DSWx-HLS | 17 Sep 05:00 | +16 h | 10 |
+| | DSWx-HLS (Landsat 8) | 17 Sep 05:00 | +16 h | 10 |
 | North Bihar post, 9 Sep 12:58 | RTC-S1 | 9 Sep 12:20 | −0.6 h | 56 bursts |
 | | DSWx-S1 | 12 Sep 00:10 | +59 h | 15 |
 | North Bihar pre, 28 Aug 12:58 | RTC-S1 | 28 Aug 12:20 | −0.6 h | 56 bursts |

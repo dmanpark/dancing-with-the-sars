@@ -25,7 +25,7 @@ Pre-event. Data located, references located, plan written. No submission code: t
 ```
 data/events.json        candidate events (point, onset, search window)
 data/scenes/            ASF query output: every NISAR granule per event, and pairs.csv
-data/refs/              CMR query output: Sentinel-1 / Sentinel-2 reference products near each NISAR date
+data/refs/              CMR query output: Sentinel-1 and optical reference products near each NISAR date
 data/manifest.csv       everything to download before the event, with roles and URLs
 prep/                   pre-event reconnaissance tools (cite them if used during the event)
   find_scenes.py        search ASF for PROVISIONAL GCOV and pair pre/post scenes
