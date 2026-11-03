@@ -1,0 +1,10 @@
+# NISAR products are multi-GB; never commit them
+*.h5
+*.tif
+*.tiff
+*.nc
+downloads/
+__pycache__/
+.ipynb_checkpoints/
+.env
+.netrc
