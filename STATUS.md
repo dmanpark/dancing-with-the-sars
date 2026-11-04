@@ -1,45 +1,40 @@
 # Status
 
-Updated Wed 4 Nov 2026, 13:40 America/Los_Angeles (`EVENT_TZ=America/Los_Angeles`).
+Updated Wed 4 Nov 2026, 14:35 America/Los_Angeles (`EVENT_TZ=America/Los_Angeles`).
 
-**Phase:** pre-event mode, Phase 0 of `prompts/build.md`, partly done. Kickoff is Sat 14 Nov 09:00.
+**Phase:** pre-event mode, Phase 0 of `prompts/build.md`, partly done. The preliminary tests are finished. Kickoff is Sat 14 Nov 09:00.
 
 ## Done, with evidence
 
 - **Clock.** Windows time zone `Pacific Standard Time`, so `EVENT_TZ=America/Los_Angeles`. Before kickoff, so Phase 0 only.
-- **Setup** (`prompts/setup.md`) done; notes in `prelim/SETUP.md` (committed by the preliminary tests on branch `prelim`).
-- **Environment.** `dwts` conda env at `~/miniforge3/envs/dwts`: Python 3.11.18, GDAL 3.10.3, pytest 9.2.0, ffmpeg 9.0.2, gh 2.103.3, Playwright 1.64.1 (pip). Headless Chromium 156.0.8078.4 starts in 1.5 s. DSWX-SAR is not installed yet; the preliminary tests' T10 installs it.
-- **Disk.** Linux ext4 disk: 928 GB free of 1,007 GB (`df -h ~`, 4 Nov 2026, 12:11). C: has about 1.1 TB free.
-- **Earthdata.** `~/.netrc` works: HTTP 206 on the first 1 KB of one DSWx-HLS file and one NISAR GCOV file (4 Nov 2026, 07:46).
-- **GitHub.** Logged in as `dmanpark` (scopes gist, read:org, repo, workflow). Public repo https://github.com/dmanpark/dancing-with-the-sars, remote `github`, `main` pushed. `LICENSE` is Apache-2.0 from apache.org.
-- **Placeholder site.** Pages builds from GitHub Actions (`.github/workflows/pages.yml`). First run 41863159350: queued 27 min waiting for a runner, then succeeded at 16:26 UTC. https://dmanpark.github.io/dancing-with-the-sars/ returns HTTP 200 with "Dancing with the SARS: coming 15 Nov 2026".
-- **Phone check.** Playwright, iPhone 13 emulation (390 × 664 viewport): HTTP 200, load 0.33 s, 0 console errors. Screenshot `$DWTS_OUT/screens/placeholder_phone.png` (30 KB).
-- **Push check** on `main`: 6.4 MB tracked, no file over 50 MB, no data file types; the `machine urs`, `password` and `token=` hits are all instructions or notes, not credentials. `pytest -q` collects no tests (exit 5) because there is no code before kickoff.
+- **Setup** (`prompts/setup.md`) done; notes in `prelim/SETUP.md` on branch `prelim`.
+- **Environment.** `dwts` conda env: Python 3.11.18, GDAL 3.10.3, pytest 9.2.0, ffmpeg 9.0.2, gh 2.103.3, Playwright 1.64.1 (pip), headless Chromium 156. The `dswx-sar` env (DSWX-SAR tag DSWx-NI-v1.0) was built by the tests' T10; `dswx_s1.py --help` runs there.
+- **Disk.** Linux ext4 disk: about 900 GB free of 1,007 GB. C: has about 1.1 TB free.
+- **Earthdata.** `~/.netrc` works for PO.DAAC (DSWx) and ASF NISAR.
+- **GitHub.** Public repo https://github.com/dmanpark/dancing-with-the-sars, remote `github`, `main` pushed. Placeholder https://dmanpark.github.io/dancing-with-the-sars/ is live (HTTP 200; iPhone 13 viewport, 0.33 s load, 0 console errors; screenshot `$DWTS_OUT/screens/placeholder_phone.png`).
+- **Preliminary tests** finished 4 Nov. Report `prelim/REPORT.md` on branch `prelim` (commit 84357fe), pushed to `origin`. Headline: the radar side works (flood visible in HH, mask explains the stripes, grids align, tile budget about 151 MB), but claim 1 as specified has no referee pixels: the post −8 h optical pass is all fill inside the NISAR footprint, and no pixel has NISAR, Sentinel-1 and a clear post-event optical map together. Four proposals and eight open questions for the team.
+- **NISAR downloads complete.** All 14 NISAR files in `data/manifest.csv` outside `stretch` (Gandak lead pair, series, history, tier3-phase, fallback; north Bihar heldout roles) are on disk and match `size_mb` within 1 MB (`~/dwts-setup/verify_downloads.py`, 14:25). 64.4 GB on disk in total.
 
-## Running
+## Waiting on a person
 
-- **Preliminary tests** (`prompts/prelim-tests.md`) in the "DWTS prelim tests" Ubuntu window, writing `prelim/REPORT.md`. Resumed 12:19 in auto mode after the memory incident below, and again at 13:38 (`~/dwts-setup/resume_prelim_auto2.sh`) after a VM pause of about 40 minutes from 12:50 dropped its connection. By then T0 to T5, T7 to T9 and T11 had run; T6, T10 and T12 were next. T1's own downloads are complete: the lead pair (7,927 MB and 1,925 MB, both matching their CMR MD5 checksums), the crop's RTC bursts and the Gandak water-map tiles.
-- **Phase 0 step 4 downloads** in the "DWTS downloads" Ubuntu window (`~/dwts-setup/phase0_downloads.sh`, log `$DWTS_OUT/logs/phase0_downloads.log`). Done by 12:41 with `prep/download.py`: Gandak series (4 files, 19.4 GB), history (2.0 GB), tier3-phase (3.7 GB), water-map tiles. Restarted 13:36 with curl (resume, retry, stall abort) after a VM pause froze the transfer: fallback (14.1 GB), north Bihar heldout roles (15.0 GB), every Gandak and north Bihar RTC burst (VV, VH, mask, `.h5`; about 12 GB), north Bihar DSWx-S1 water tiles. Skips `stretch` and `imagery`. At the end `~/dwts-setup/verify_downloads.py` checks every file against `size_mb` and writes `$DWTS_OUT/logs/downloads_verify.txt`. Closing the window stops it; rerunning resumes `.part` files.
-- **ASF agreement.** `earthaccess` refuses the RTC files with `EulaNotAccepted`, while `curl --netrc` gets them (HTTP 206, HDF5 header, 13:33). Accepting the ASF data-use agreement in the Earthdata profile should make `prep/download.py` work for RTC too; not yet confirmed.
+- **ASF data-use agreement** (hard stop 1). ASF answers HTTP 401 "Could Not Login. Be sure to agree to the EULA." for every RTC-S1 file, with both curl and `prep/download.py`. The user accepts it once in a browser while signed in to Earthdata. Downloads are stopped until then.
+- **The team's review** of `prelim/REPORT.md` by Sun 8 Nov: proposals 1 to 4 and the open questions, especially the claim 1 design. Agreed changes are logged at the end of `docs/build-spec.md`.
 
-## Deferred to a rerun of build.md after the preliminary tests
+## Not yet downloaded
 
-- Step 4's check of the finished downloads (`downloads_verify.txt`).
-- Step 5, ancillary layers for both frames, with URLs into `CITATIONS.md`.
-- Step 7, every FAIL, PARTIAL and flag from `prelim/REPORT.md` with its fallback.
-- Step 2's DSWX-SAR check (`dswx_s1.py --help`), once T10 has installed it.
-
-Why each was deferred: `DECISIONS.md`.
+- Every Gandak and north Bihar RTC-S1 burst (VV, VH, mask, `.h5`; about 12 GB; 80 Gandak crop files from the tests are on disk).
+- North Bihar DSWx-S1 water tiles (`ref-post`, small).
 
 ## Next
 
-1. Let the preliminary tests finish; the team reviews `prelim/REPORT.md` by Sun 8 Nov and logs agreed changes at the end of `docs/build-spec.md`.
-2. Then rerun `prompts/build.md` for steps 2, 4, 5 and 7, and stop until 09:00 Sat 14 Nov.
+1. After the ASF agreement: rerun `~/dwts-setup/phase0_downloads.sh` in the "DWTS downloads" window (it resumes and skips finished files), then the size check.
+2. With the RTC bursts on disk: the tests' T10 like-for-like rerun (`python prelim/t10_setup.py --opera-collection`, then `dswx_s1.py`, then `prelim/t10_compare.py`) in the tests session, which updates the report.
+3. After the team's review: rerun `prompts/build.md` for step 5 (ancillary layers for both frames) and step 7 (every FAIL, PARTIAL and flag with its fallback), then stop until 09:00 Sat 14 Nov.
+4. Before Saturday's build: `~/PROJECT_DWTS` is on branch `prelim`; run `git checkout main` there first.
 
-## Blockers
+## Notes
 
-None.
-
-## Memory incident, 4 Nov 2026
-
-Around 11:40 Windows ran out of memory (0.3 GB free of 31.6 GB) and WSL stopped responding (`Wsl/Service/0x8007274c`). The WSL VM was at its default cap (15.8 GB) with 4 GB swap, while the preliminary tests worked on the 7.9 GB quad-pol file. With the user's go-ahead, `C:\Users\daria\.wslconfig` now sets `memory=20GB` and `swap=16GB`; the user ran `wsl --shutdown` and Ubuntu came back with 19 GB RAM and 16 GB swap visible. The tests were told to read GCOV layers in blocks and keep peak memory under about 12 GB. Other large Windows users at the time: 15 Claude processes (6.2 GB), a `vmmem` VM (4.0 GB), Chrome (3 to 4 GB). Before the event, close what the build does not need.
+- **12 GB memory guard.** The tests stopped DSWx-NI at 12.5 GB because the setup session told them to keep peak memory under about 12 GB after the freeze below. That limit is not in the spec. WSL now has 20 GB of RAM and 16 GB of swap; whether DSWx-NI gets more is the team's call (report, open question 7).
+- **Correction.** At 13:33 a curl test fetched an RTC file from ASF. It got through only because the cookie jar held a session cookie from the NISAR download, which skipped ASF's agreement check for RTC; a fresh login is refused. Nothing more was fetched that way.
+- **VM pause**, 4 Nov about 12:50 to 13:30: the downloads stalled and the tests lost their API connection. Downloads now use curl with resume (`~/dwts-setup/fetch_one.sh`); a Claude session that loses its connection waits for a new prompt.
+- **Memory incident**, 4 Nov about 11:40: Windows ran out of memory and WSL stopped answering. `C:\Users\daria\.wslconfig` now sets `memory=20GB` and `swap=16GB`. Before the event, close what the build does not need (other Claude windows, ChatGPT, Docker Desktop, Steam).
