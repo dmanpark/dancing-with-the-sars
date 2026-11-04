@@ -13,6 +13,7 @@ Start here:
 - **[docs/build-spec.md](docs/build-spec.md)**: decisions fixed before kickoff, file contracts between roles, each role's steps, done-criteria per tier, unknowns and the change log.
 - **[prompts/setup.md](prompts/setup.md)**: a Claude Code prompt that sets up the 3090 machine (WSL2, Python, data folders, Earthdata login) and then starts the preliminary tests. Open Claude Code in this folder and say "Read prompts/setup.md and carry it out."
 - **[prompts/prelim-tests.md](prompts/prelim-tests.md)**: the preliminary tests T0 to T12 on the real files; they write `prelim/REPORT.md` for the team to review by Sun 8 Nov.
+- **[prompts/build.md](prompts/build.md)**: the Claude Code prompt that builds and ships the whole project. Run before kickoff, it only does the downloads and GitHub setup; at kickoff it builds everything. Start it with `claude --permission-mode auto`.
 - [docs/audit.md](docs/audit.md): the audit of version 1, scores and every fix.
 - [docs/data.md](docs/data.md): verified NISAR scenes, reference products and their timing, data traps.
 - [docs/review.md](docs/review.md): the critique of the original research line that started this.
@@ -43,6 +44,7 @@ prep/                   pre-event reconnaissance tools (cite them if used during
   quicklook.py          side-by-side of the public browse PNGs for a pair
 prompts/setup.md        Claude Code prompt: machine setup, then starts the tests
 prompts/prelim-tests.md Claude Code prompt for the preliminary tests
+prompts/build.md        Claude Code prompt: pre-event downloads, then the full build at kickoff
 prelim/                 created by the tests: throwaway code, figures, REPORT.md (outputs in prelim/out are git-ignored)
 quicklooks/             saved browse comparisons
 docs/                   plan, spec, audit, data notes, review, literature, archive

@@ -204,10 +204,12 @@ The Space Apps FAQ asks teams to "start the actual work when the hackathon begin
 
 **By Fri 13 Nov**
 
-- [ ] Download the rest of the list and the ancillary layers: Copernicus GLO-30 DEM and HAND, ESA WorldCover, JRC surface water, GHSL built-up area.
-- [ ] Deploy an empty GitHub Pages site through GitHub Actions and load it on a phone.
+- [ ] Run [../prompts/build.md](../prompts/build.md) once. Before kickoff it only downloads the rest of the list and the ancillary layers, sets up the GitHub repo and deploys an empty Pages site, then stops.
+- [ ] Load the empty site on a phone.
 - [ ] Assign the four roles: Radar, Truth, App, Story.
 - [ ] Friday night, read the 2026 submission and judging guides when they come out; adjust the storyboard if the rules changed.
+
+**Sat 14 Nov, 09:00:** start [../prompts/build.md](../prompts/build.md) again in auto mode. It builds the project and stops only for logins, the video upload and the submission form.
 
 ## After Space Apps
 
