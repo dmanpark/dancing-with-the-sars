@@ -2,7 +2,7 @@
 
 Checked on 3 Nov 2026 against the Space Apps site, ASF's NISAR documentation and a live query of the ASF catalog (`prep/find_scenes.py`). Space Apps starts on 14 Nov, eleven days from now.
 
-**Update, later on 3 Nov:** the plan that came out of this review is in [concept.md](concept.md), and the schedule is in [playbook.md](playbook.md). Two findings since the first pass: Sentinel-2 water maps bracket the Gandak NISAR pass at −8 h and +16 h, and the north Bihar floods replace Bangladesh as the held-out event.
+**Update, later on 3 Nov:** the plan that came out of this review is now [overview.md](overview.md) and [build-spec.md](build-spec.md) (the first drafts are in [archive/](archive/)). Two findings since the first pass: Sentinel-2 water maps bracket the Gandak NISAR pass at −8 h and +16 h, and the north Bihar floods replace Bangladesh as the held-out event.
 
 ## Verdict
 
@@ -77,6 +77,6 @@ A real fix needs field reports, or ALOS-2 / ALOS-4 L-band scenes acquired within
 2. ~~GFM or DSWx-S1 output exists for the Sentinel-1D pass of 29 Sep 00:19 UTC over that frame.~~ Passed: OPERA DSWx-S1 has 15 tiles for that pass, and DSWx-HLS has optical water maps (Sentinel-2 and Landsat 8) at −8 h and +16 h.
 3. The GCOV mask layer explains the stripes, so you know whether they are no-data or low-signal.
 
-What would downgrade the idea: if the L-band map and the GFM map agree everywhere, including in vegetated floodplain, then H1 in [concept.md](concept.md) is dead. Fall back to H0 and H2 (open-water head-to-head, and reliability across two events), which is still a defensible result and still uses NISAR-specific physics.
+What would downgrade the idea: if the L-band map and the GFM map agree everywhere, including in vegetated floodplain, then claim 2 in [overview.md](overview.md) fails. Fall back to claims 1, 3 and 4 (open-water head-to-head, trust across two events, and the check-first list), which is still a defensible result and still uses NISAR-specific physics.
 
 I did not investigate CLPS. With the SAR data confirmed, I would not spend prep days on it.

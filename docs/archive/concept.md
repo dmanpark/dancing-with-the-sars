@@ -1,3 +1,5 @@
+> **Superseded on 3 Nov 2026** by [../overview.md](../overview.md) and [../build-spec.md](../build-spec.md). Kept for the record; the project is no longer called Wallflower, and several methods here changed after the audit ([../audit.md](../audit.md)).
+
 # The project: what to build on 14 Nov
 
 Second iteration, 3 Nov 2026. Supersedes the plan in the first review. Every date and sensor pass below was checked against ASF or NASA CMR today; the queries are reproducible with `prep/`.

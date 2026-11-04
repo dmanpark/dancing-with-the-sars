@@ -1,3 +1,5 @@
+> **Superseded on 3 Nov 2026** by [../overview.md](../overview.md) and [../build-spec.md](../build-spec.md). Kept for the record; the project is no longer called Wallflower, and several methods here changed after the audit ([../audit.md](../audit.md)).
+
 # Playbook: the next eleven days and the 39 hours
 
 Times are your local event's time zone. The submission deadline is 11:59 PM **local event time** on Sunday 15 Nov, so confirm which event the team owner is registered at.

@@ -1,10 +1,27 @@
-# NISAR products are multi-GB; never commit them
+# NISAR products and every derived raster are multi-GB; never commit them
 *.h5
 *.tif
 *.tiff
 *.nc
+*.mbtiles
+*.pmtiles
+*.zip
+*.tar
+*.gz
 downloads/
-__pycache__/
-.ipynb_checkpoints/
+dwts-data/
+dwts-out/
+
+# preliminary tests: code, figures and REPORT.md are committed; outputs are not
+prelim/out/
+
+# credentials
 .env
 .netrc
+*.netrc
+.edl_token
+
+# Python and notebooks
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
