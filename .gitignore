@@ -25,3 +25,6 @@ prelim/out/
 __pycache__/
 *.pyc
 .ipynb_checkpoints/
+
+# copies of files sent in chat
+Claude outputs/

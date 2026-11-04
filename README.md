@@ -10,7 +10,8 @@ Start here:
 
 - **[docs/overview.md](docs/overview.md)**: the problem, the four claims and how each could fail, the data, the demo and the 30-second video, judging fit, scope, the 39-hour schedule, risks, the pre-event checklist.
 - **[docs/build-spec.md](docs/build-spec.md)**: decisions fixed before kickoff, file contracts between roles, each role's steps, done-criteria per tier, unknowns and the change log.
-- **[prompts/prelim-tests.md](prompts/prelim-tests.md)**: a Claude Code prompt that runs preliminary tests T0 to T12 on the real files and writes `prelim/REPORT.md` for the team to review by Sun 8 Nov.
+- **[prompts/setup.md](prompts/setup.md)**: a Claude Code prompt that sets up the 3090 machine (WSL2, Python, data folders, Earthdata login) and then starts the preliminary tests. Open Claude Code in this folder and say "Read prompts/setup.md and carry it out."
+- **[prompts/prelim-tests.md](prompts/prelim-tests.md)**: the preliminary tests T0 to T12 on the real files; they write `prelim/REPORT.md` for the team to review by Sun 8 Nov.
 - [docs/audit.md](docs/audit.md): the audit of version 1, scores and every fix.
 - [docs/data.md](docs/data.md): verified NISAR scenes, reference products and their timing, data traps.
 - [docs/review.md](docs/review.md): the critique of the original research line that started this.
@@ -39,6 +40,7 @@ prep/                   pre-event reconnaissance tools (cite them if used during
   find_references.py    find DSWx-S1, DSWx-HLS, RTC-S1 and HLS near a NISAR time
   download.py           download manifest rows with an Earthdata login
   quicklook.py          side-by-side of the public browse PNGs for a pair
+prompts/setup.md        Claude Code prompt: machine setup, then starts the tests
 prompts/prelim-tests.md Claude Code prompt for the preliminary tests
 prelim/                 created by the tests: throwaway code, figures, REPORT.md (outputs in prelim/out are git-ignored)
 quicklooks/             saved browse comparisons

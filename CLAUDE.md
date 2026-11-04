@@ -23,7 +23,7 @@ Status: **pre-event**. The submission is built during the 39 hours of the event.
 - **The fixed decisions in `docs/build-spec.md` are frozen.** Do not change cuts, thresholds, pixel sets, tests or margins. If one looks wrong, write a proposal with the evidence; the team decides and logs the change at the end of the build spec.
 - **Before kickoff, compute no claim number.** No F1, excess km², AUROC or hit count against any reference, on either event. Feasibility checks (file structure, masks, calibration offsets on stable ground, bimodal tile counts, legends, sizes, run times) are fine.
 - **No pre-event submission code.** The Space Apps FAQ asks teams to start the actual work at kickoff. Code written before 14 Nov 09:00 local goes in `prelim/` only and is rewritten during the event. The `prep/` tools are pre-event tools and get cited on the project page if used.
-- **Ask before** any download that takes the running total past 15 GB in one session, `sudo`, `apt`, Docker or any other system-level install, `git push`, any deploy or anything else that publishes, and deleting anything outside `prelim/out/` and `$DWTS_DATA`.
+- **Ask before** any download that takes the running total past 15 GB in one session, `sudo`, `apt`, Docker or any other system-level install, `git push` to any server, any deploy or anything else that publishes (pushing to `origin` when it is the local Windows copy of this repo is fine), and deleting anything outside `prelim/out/` and `$DWTS_DATA`.
 - **Do not edit `docs/` or `prep/` unasked.** Report problems in them instead.
 
 ## Conventions

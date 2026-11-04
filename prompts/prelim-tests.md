@@ -2,10 +2,12 @@
 
 ## How to use this
 
-Run it on the 3090 machine, inside WSL2, from the repo root, with an Earthdata login in `~/.netrc` (never in the repo):
+**First time: start with [setup.md](setup.md).** It sets up WSL2, the Linux copy of the repo, Python and the Earthdata login, then starts these tests by itself.
+
+To rerun only the tests later, open an Ubuntu window on the 3090 machine:
 
 ```bash
-cd ~/PROJECT_DWTS          # the repo, cloned onto the WSL2 ext4 disk
+cd ~/PROJECT_DWTS
 claude
 ```
 
@@ -39,7 +41,7 @@ These override anything else in this prompt.
 2. **Data outside the repo.** Downloads go to `$DWTS_DATA/downloads` (default `~/dwts-data/downloads`) on the ext4 disk. Never commit data, rasters or credentials.
 3. **Compute no claim numbers.** No F1, precision, recall, IoU or agreement of NISAR against any reference; no flooded-vegetation flag rates or km²; no AUROC; no hit counts. The one allowed comparison of two products is T10 (our DSWx-S1 run against OPERA's, both C-band). If you notice you are about to compute something that looks like a result, stop and describe the feasibility question instead.
 4. **Do not tune.** The cuts (−3 dB, +3 dB, 2 dB), the bimodality rule, the calibration rule and every other fixed decision stay as written. Where the spec leaves a value to be read from the files (dataset paths, mask values, legends, posting), read it and record it.
-5. **Ask before** any download that would take this session's running total past 15 GB, `sudo`, `apt`, installing Docker or anything system-wide, `git push` or any deploy, and deleting anything outside `prelim/out/` and `$DWTS_DATA`. Keep a running download total in the report.
+5. **Ask before** any download that would take this session's running total past 15 GB, `sudo`, `apt`, installing Docker or anything system-wide, `git push` to any server or any deploy (pushing the `prelim` branch to `origin`, the Windows folder on this computer, is fine), and deleting anything outside `prelim/out/` and `$DWTS_DATA`. Keep a running download total in the report.
 6. **Timeboxes are real.** When a test hits its timebox, write down where it stands, mark it PARTIAL or BLOCKED, and move on.
 7. **Log every command that matters** (installs, downloads, tool runs) in the report's environment section, with versions and wall times.
 8. **Gandak only.** This run needs no north Bihar files; they come later with the rest of the download list.
@@ -63,7 +65,8 @@ T0 → T1 (start downloads) → start the T10 install in the background → T2 �
 ## T0. Environment (timebox 45 min)
 
 - Confirm WSL2, that the repo and `$DWTS_DATA` are on ext4 (`df -T`), free disk (need at least 40 GB) and RAM (`free -g`).
-- Create a conda env `dwts` from `prelim/environment.yml` (conda-forge): python 3.11, numpy, scipy, h5py, rasterio, gdal, xarray, rioxarray, pyproj, shapely, geopandas, scikit-learn, matplotlib, pyyaml, earthaccess, asf_search. If conda is missing, ask before installing Miniforge.
+- Setup (`prompts/setup.md`) installed Miniforge and wrote `~/.netrc`; `prelim/SETUP.md` has its notes. If `conda` or `~/.netrc` is missing, stop and say setup needs to run first.
+- Create a conda env `dwts` from `prelim/environment.yml` (conda-forge): python 3.11, numpy, scipy, h5py, rasterio, gdal, xarray, rioxarray, pyproj, shapely, geopandas, scikit-learn, matplotlib, pyyaml, earthaccess, asf_search.
 - Get the `pmtiles` CLI as a single binary from the protomaps go-pmtiles releases into `~/bin`.
 - Check `~/.netrc` has an `urs.earthdata.nasa.gov` entry (do not print it) and that `earthaccess.login()` succeeds.
 - **Pass:** env builds, GDAL CLI and Python GDAL versions match, login works.
@@ -227,5 +230,5 @@ Write plainly: short sentences, no em-dashes, units on every number, and say wha
 
 ## When you are done
 
-1. Make sure `prelim/out/` and every data file are git-ignored, then commit `prelim/` (code, config, environment file, figures, report) to a local branch named `prelim`. Do not push.
+1. Make sure `prelim/out/` and every data file are git-ignored, then commit `prelim/` (code, config, environment file, figures, `SETUP.md`, `REPORT.md`) to a branch named `prelim`, and push that branch to `origin` (`git push origin prelim`). `origin` is the Windows folder `C:\Users\daria\PROJECT_DWTS`, so the team sees the report there. Push nowhere else.
 2. Print a summary of ten lines or fewer in the chat: the go or no-go answers, every FAIL or BLOCKED test, and the proposed changes by number.
