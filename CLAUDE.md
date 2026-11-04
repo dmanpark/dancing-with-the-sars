@@ -4,7 +4,7 @@ Context for Claude Code sessions in this repo.
 
 ## What this is
 
-Team repo for NASA Space Apps 2026 (14 to 15 Nov), challenge "Dancing with the SARS". The project, **Dancing with the SARS: The Hidden Steps**, uses NISAR L-band radar to find flood water under vegetation that C-band (Sentinel-1) flood maps largely miss. The lead event is Bihar's record Gandak flood of 28 Sep 2026; the trust model is fit on the north Bihar floods of early September. The output is a static web map with a trust layer and a ranked list of places to verify first.
+Team repo for NASA Space Apps 2026 (14 to 15 Nov), challenge "Dancing with the SARS". The project, **Dancing with the SARS: The Hidden Steps**, uses NISAR L-band radar to find flood water under vegetation that C-band (Sentinel-1) flood maps largely miss. The lead event is Bihar's record Gandak flood of 28 Sep 2026. The output is an interactive web app, app first and study second: an animation of the flood every 12 days, a slider between Sentinel-1's and NISAR's flood maps, a step where you tap a field and hear its radar signal, and a step showing how we checked it. Two claims sit underneath (open water head to head; hidden water under vegetation). A trust map fit on the north Bihar floods and a check-first list are Tier 3.
 
 Status: **pre-event**. The submission is built during the 39 hours of the event. Before kickoff the repo holds planning docs, data lists, the `prep/` search and download tools, and throwaway preliminary tests in `prelim/`.
 
@@ -45,4 +45,4 @@ Plain sentences. No em-dashes. Every number carries its unit and, for anything t
 
 ## Team roles
 
-Radar (NISAR processing), Truth (references and every reported number), Map (ancillary layers and the app), Story (video, project page, citations).
+Radar (NISAR processing and the listening grid), Truth (references and every reported number), App (ancillary layers and the web app), Story (video, project page, step text, diagrams, citations).

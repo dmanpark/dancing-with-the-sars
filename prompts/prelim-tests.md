@@ -113,7 +113,7 @@ On both GCOV files:
 
 ## T11. Ancillary layers and the 5% rule (timebox 1.5 h)
 
-- Put HAND, slope (from GLO-30, computed in a metric projection), WorldCover (nearest class), GHSL built-up (averaged fraction) and JRC occurrence (averaged fraction) onto the 40 m Gandak grid. Write them to `prelim/out/`. Time each one; Map does this on Saturday morning.
+- Put HAND, slope (from GLO-30, computed in a metric projection), WorldCover (nearest class), GHSL built-up (averaged fraction) and JRC occurrence (averaged fraction) onto the 40 m Gandak grid. Write them to `prelim/out/`. Time each one; App does this on Saturday morning.
 - On pixels valid on both lead dates, per WorldCover class 10, 20, 90 and 40: the share with HAND > 15 m and slope ≤ 10°, and the area in km² with HAND < 2 m. These use no NISAR values beyond the mask, so they are allowed.
 - **Pass:** every layer on the grid; the 5% table written. **Spec impact:** any class under 5% loses the secondary claim 2 test.
 
@@ -171,7 +171,8 @@ This is the go or no-go check from `docs/review.md`. It is visual only.
 
 - Take two layers on the crop: HH dB for 28 Sep (continuous) and a class layer. For the class layer, use the T8 optical referee states rather than any NISAR flood map.
 - Color-map each to 8-bit RGBA, write MBTiles with GDAL at zoom 6 to 12, once as WEBP and once as PNG8, then convert each with `pmtiles convert`. Record file sizes and times.
-- Extrapolate the size per layer to the full frame and to the app's layer list: seven HH dates, the flood maps, Sentinel-1, trust and check-first. Compare with the 600 MB site budget and the 100 MB file limit.
+- Extrapolate the size per layer to the full frame and to the app's layer list: seven HH dates, the NISAR and Sentinel-1 flood maps, the hidden-steps layer, the optical outline and the swath-gap mask (plus trust and check-first for Tier 3). Compare with the 600 MB site budget and the 100 MB file limit.
+- Size the listening grid: HH and HV for 16 and 28 Sep on the crop at 240 m, encoded as the build spec's app decisions say (uint8, 128 × 128 cell chunks). Record bytes per chunk and extrapolate to seven dates over the full frame. Do not write any sound code.
 - Write a throwaway `prelim/out/app_test/index.html` with MapLibre GL JS and the pmtiles library from a CDN, showing one PMTiles layer. Serve it with `python -m http.server` and confirm tiles load through HTTP range requests (check the server log or a headless browser). Do not deploy anything.
 - **Pass:** every projected file under 100 MB and the site under 600 MB. **Flag** layers that need the 60 m display fallback.
 
