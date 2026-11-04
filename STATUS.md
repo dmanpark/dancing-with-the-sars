@@ -1,6 +1,6 @@
 # Status
 
-Updated Wed 4 Nov 2026, 12:15 America/Los_Angeles (`EVENT_TZ=America/Los_Angeles`).
+Updated Wed 4 Nov 2026, 12:23 America/Los_Angeles (`EVENT_TZ=America/Los_Angeles`).
 
 **Phase:** pre-event mode, Phase 0 of `prompts/build.md`, partly done. Kickoff is Sat 14 Nov 09:00.
 
@@ -18,11 +18,12 @@ Updated Wed 4 Nov 2026, 12:15 America/Los_Angeles (`EVENT_TZ=America/Los_Angeles
 
 ## Running
 
-- **Preliminary tests** (`prompts/prelim-tests.md`) in the "DWTS prelim tests" Ubuntu window, writing `prelim/REPORT.md`. Restarted 12:12 with `claude --continue` after the memory incident below. The lead pair (7,927 MB and 1,925 MB) and the Gandak ancillary tiles were already on disk.
+- **Preliminary tests** (`prompts/prelim-tests.md`) in the "DWTS prelim tests" Ubuntu window, writing `prelim/REPORT.md`. Resumed 12:19 in auto mode (`~/dwts-setup/resume_prelim_auto.sh`) after the memory incident below. T1's own downloads are complete: the lead pair (7,927 MB and 1,925 MB, both matching their CMR MD5 checksums), the crop's RTC bursts and the Gandak water-map tiles.
+- **Phase 0 step 4 downloads**, started 12:20 in the "DWTS downloads" Ubuntu window (`~/dwts-setup/phase0_downloads.sh`, log `$DWTS_OUT/logs/phase0_downloads.log`). Order: Gandak series, history, water-map tiles, every RTC burst (VV, VH, mask, `.h5`), tier3-phase, fallback; then north Bihar heldout roles, RTC bursts and DSWx-S1 water tiles. Skips `stretch` and `imagery`. About 54 GB of NISAR plus about 12 GB of RTC bursts. At the end `~/dwts-setup/verify_downloads.py` checks every file against `size_mb` and writes `$DWTS_OUT/logs/downloads_verify.txt`. Closing the window stops it; rerunning skips finished files, so the size check matters.
 
 ## Deferred to a rerun of build.md after the preliminary tests
 
-- Step 4, downloads (the full manifest; past 15 GB in one session needs a yes under `CLAUDE.md`).
+- Step 4's check of the finished downloads (`downloads_verify.txt`).
 - Step 5, ancillary layers for both frames, with URLs into `CITATIONS.md`.
 - Step 7, every FAIL, PARTIAL and flag from `prelim/REPORT.md` with its fallback.
 - Step 2's DSWX-SAR check (`dswx_s1.py --help`), once T10 has installed it.
