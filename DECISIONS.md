@@ -18,3 +18,5 @@ One line per decision taken without asking, as `prompts/build.md` requires: `HH:
 
 07:48 | Commit the Phase 0 files on `main` locally before starting the preliminary tests, and push them once GitHub is logged in | wait for GitHub first; commit now | The tests work in the same clone and branch `prelim` off `main` at the end; committing first keeps the two sets of files apart
 07:48 | Start the preliminary tests before GitHub is set up | wait for the GitHub login; start now | They need only Earthdata, which works, and they take several hours
+07:58 | Push `main` although `pytest -q` collects no tests (exit 5) | wait for tests; push | There is no project code before kickoff, so there is nothing to test; the size and secret checks passed
+07:58 | Repo under the logged-in account `dmanpark`, public, with the live site as its homepage | an organization account; private | build.md says the logged-in account and public
