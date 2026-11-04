@@ -1,6 +1,6 @@
 # Status
 
-Updated Wed 4 Nov 2026, 12:23 America/Los_Angeles (`EVENT_TZ=America/Los_Angeles`).
+Updated Wed 4 Nov 2026, 13:40 America/Los_Angeles (`EVENT_TZ=America/Los_Angeles`).
 
 **Phase:** pre-event mode, Phase 0 of `prompts/build.md`, partly done. Kickoff is Sat 14 Nov 09:00.
 
@@ -18,8 +18,9 @@ Updated Wed 4 Nov 2026, 12:23 America/Los_Angeles (`EVENT_TZ=America/Los_Angeles
 
 ## Running
 
-- **Preliminary tests** (`prompts/prelim-tests.md`) in the "DWTS prelim tests" Ubuntu window, writing `prelim/REPORT.md`. Resumed 12:19 in auto mode (`~/dwts-setup/resume_prelim_auto.sh`) after the memory incident below. T1's own downloads are complete: the lead pair (7,927 MB and 1,925 MB, both matching their CMR MD5 checksums), the crop's RTC bursts and the Gandak water-map tiles.
-- **Phase 0 step 4 downloads**, started 12:20 in the "DWTS downloads" Ubuntu window (`~/dwts-setup/phase0_downloads.sh`, log `$DWTS_OUT/logs/phase0_downloads.log`). Order: Gandak series, history, water-map tiles, every RTC burst (VV, VH, mask, `.h5`), tier3-phase, fallback; then north Bihar heldout roles, RTC bursts and DSWx-S1 water tiles. Skips `stretch` and `imagery`. About 54 GB of NISAR plus about 12 GB of RTC bursts. At the end `~/dwts-setup/verify_downloads.py` checks every file against `size_mb` and writes `$DWTS_OUT/logs/downloads_verify.txt`. Closing the window stops it; rerunning skips finished files, so the size check matters.
+- **Preliminary tests** (`prompts/prelim-tests.md`) in the "DWTS prelim tests" Ubuntu window, writing `prelim/REPORT.md`. Resumed 12:19 in auto mode after the memory incident below, and again at 13:38 (`~/dwts-setup/resume_prelim_auto2.sh`) after a VM pause of about 40 minutes from 12:50 dropped its connection. By then T0 to T5, T7 to T9 and T11 had run; T6, T10 and T12 were next. T1's own downloads are complete: the lead pair (7,927 MB and 1,925 MB, both matching their CMR MD5 checksums), the crop's RTC bursts and the Gandak water-map tiles.
+- **Phase 0 step 4 downloads** in the "DWTS downloads" Ubuntu window (`~/dwts-setup/phase0_downloads.sh`, log `$DWTS_OUT/logs/phase0_downloads.log`). Done by 12:41 with `prep/download.py`: Gandak series (4 files, 19.4 GB), history (2.0 GB), tier3-phase (3.7 GB), water-map tiles. Restarted 13:36 with curl (resume, retry, stall abort) after a VM pause froze the transfer: fallback (14.1 GB), north Bihar heldout roles (15.0 GB), every Gandak and north Bihar RTC burst (VV, VH, mask, `.h5`; about 12 GB), north Bihar DSWx-S1 water tiles. Skips `stretch` and `imagery`. At the end `~/dwts-setup/verify_downloads.py` checks every file against `size_mb` and writes `$DWTS_OUT/logs/downloads_verify.txt`. Closing the window stops it; rerunning resumes `.part` files.
+- **ASF agreement.** `earthaccess` refuses the RTC files with `EulaNotAccepted`, while `curl --netrc` gets them (HTTP 206, HDF5 header, 13:33). Accepting the ASF data-use agreement in the Earthdata profile should make `prep/download.py` work for RTC too; not yet confirmed.
 
 ## Deferred to a rerun of build.md after the preliminary tests
 
