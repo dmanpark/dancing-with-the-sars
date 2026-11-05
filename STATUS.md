@@ -1,6 +1,6 @@
 # Status
 
-Updated Wed 4 Nov 2026, 16:25 America/Los_Angeles (`EVENT_TZ=America/Los_Angeles`).
+Updated Wed 4 Nov 2026, 18:40 America/Los_Angeles (`EVENT_TZ=America/Los_Angeles`).
 
 **Phase:** pre-event mode, Phase 0 of `prompts/build.md`, partly done. The preliminary tests are finished. Kickoff is Sat 14 Nov 09:00.
 
@@ -15,10 +15,14 @@ Updated Wed 4 Nov 2026, 16:25 America/Los_Angeles (`EVENT_TZ=America/Los_Angeles
 - **Preliminary tests** finished 4 Nov. Report `prelim/REPORT.md` on branch `prelim` (commit 84357fe), pushed to `origin`. Headline: the radar side works (flood visible in HH, mask explains the stripes, grids align, tile budget about 151 MB), but claim 1 as specified has no referee pixels: the post −8 h optical pass is all fill inside the NISAR footprint, and no pixel has NISAR, Sentinel-1 and a clear post-event optical map together. Four proposals and eight open questions for the team.
 - **NISAR downloads complete.** All 14 NISAR files in `data/manifest.csv` outside `stretch` (Gandak lead pair, series, history, tier3-phase, fallback; north Bihar heldout roles) are on disk and match `size_mb` within 1 MB (`~/dwts-setup/verify_downloads.py`, 14:25). 64.4 GB on disk in total.
 
-## Running
-
-- **Follow-up checks** on the preliminary report, from 16:22 in the "DWTS prelim follow-up" window (`~/dwts-setup/prelim_followup.sh`, prompt `~/dwts-setup/prelim_followup_prompt.md`): (A) cloud cover and referee pixel counts for a wider optical pair, Landsat 9 27 Sep and Sentinel-2C 1 Oct, with fallbacks 26 Sep and 3 Oct; (B) isMixedMode of 23 Aug and 4 Sep; (C) calibration medians per 28 Sep acquisition region, lead and control pairs; (D) histograms of five passing HH tiles, refit per region if they pass on the brightness step; (E) which "valid" reading D uses; (F) DSWx-NI once more with up to 16 GB, 45 min timebox. Feasibility only; no claim numbers, nothing applied. Results go into `prelim/REPORT.md` on branch `prelim`.
-- `main` now includes the Windows folder's commit b919e48 (memory limits: 6 GB per process for prelim, 8 GB for the build, at most two heavy jobs), merged as 83d263f.
+- **Follow-up checks** A to F on the preliminary report, done 4 Nov evening; in `prelim/REPORT.md` on branch `prelim` (commit 1e46e03, pushed to `origin`). Feasibility only; nothing applied.
+  - A (FAIL): the wider optical pair (Landsat 9 27 Sep, Sentinel-2C 1 Oct) is clear on 7.2% and 25.3% of the NISAR and Sentinel-1 overlap and gives 135 new-water pixels there; five other pairs with 26 Sep and 3 Oct give 0. The pre-event maps (clear on 18.5% of the overlap) are the limit. No pass gives a clear optical outline at Bagaha for app step 5 (best 13.9% of the crop).
+  - B: 4 Sep has the same two-part layout as 28 Sep (40 MHz, two observations); `isMixedMode` is True on all four files.
+  - C: HH offset is negative in the upper part and positive in the lower part in both pairs (lead −0.33 / +0.34 dB, control −0.45 / +0.17 dB); HV is inconsistent; the spread inside the upper part alone is as large as frame-wide.
+  - D and E: the HH tiles' second mode is water, flooded fields or a town, not the brightness step (no tested tile spans both parts). Median thresholds differ between the parts by 3.1 dB (HH) and 3.85 dB (HV). Numbers use the literal "valid" reading (permanent water excluded).
+  - F: DSWx-NI peaked at 13.3 GB, ran 10 min 53 s and failed for want of a GLAD land-cover file its schema calls optional. Marked drop.
+- **North Bihar DSWx-S1 water tiles** (`ref-post`, 15 files, 7.9 MB) downloaded 18:37.
+- `main` includes the Windows folder's commit b919e48 (memory limits: 6 GB per process for prelim, 8 GB for the build, at most two heavy jobs), merged as 83d263f.
 
 ## Waiting on a person
 
@@ -28,11 +32,10 @@ Updated Wed 4 Nov 2026, 16:25 America/Los_Angeles (`EVENT_TZ=America/Los_Angeles
 ## Not yet downloaded
 
 - Every Gandak and north Bihar RTC-S1 burst (VV, VH, mask, `.h5`; about 12 GB; 80 Gandak crop files from the tests are on disk).
-- North Bihar DSWx-S1 water tiles (`ref-post`, small).
 
 ## Next
 
-1. After the ASF agreement (still HTTP 401 on a fresh login at 16:15) and after the follow-up checks finish (the new memory rule says no event downloads while preliminary tests run): rerun `~/dwts-setup/phase0_downloads.sh` in the "DWTS downloads" window (it resumes and skips finished files), then the size check.
+1. After the ASF agreement (still HTTP 401 on a fresh login at 18:36; the follow-up checks are done, so downloads may run): rerun `~/dwts-setup/phase0_downloads.sh` in the "DWTS downloads" window (it resumes and skips finished files), then the size check.
 2. With the RTC bursts on disk: the tests' T10 like-for-like rerun (`python prelim/t10_setup.py --opera-collection`, then `dswx_s1.py`, then `prelim/t10_compare.py`) in the tests session, which updates the report.
 3. After the team's review: rerun `prompts/build.md` for step 5 (ancillary layers for both frames) and step 7 (every FAIL, PARTIAL and flag with its fallback), then stop until 09:00 Sat 14 Nov.
 4. Before Saturday's build: `~/PROJECT_DWTS` is on branch `prelim`; run `git checkout main` there first.
