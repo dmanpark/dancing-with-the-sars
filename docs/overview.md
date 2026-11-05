@@ -58,7 +58,7 @@ Tier 3, only if Tier 1 is done at the Saturday 18:00 gate:
 
 The project page opens with these lines, filled in on Sunday:
 
-1. "On low ground under trees and wetland, NISAR flagged ___ km² more flooding than in the 12 days before, where Sentinel-1 saw dry land."
+1. "On low ground under trees, NISAR flagged ___ km² more flooding than in the 12 days before, where Sentinel-1 saw dry land."
 2. "On open water, NISAR's F1 was ___ against Sentinel-1's ___ on the same pixels (difference ___, 95% interval ___ to ___)."
 
 ## The data
