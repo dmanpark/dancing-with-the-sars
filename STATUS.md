@@ -1,48 +1,39 @@
 # Status
 
-Updated Wed 4 Nov 2026, 18:40 America/Los_Angeles (`EVENT_TZ=America/Los_Angeles`).
+Updated Thu 5 Nov 2026, 03:50 America/Los_Angeles (`EVENT_TZ=America/Los_Angeles`).
 
-**Phase:** pre-event mode, Phase 0 of `prompts/build.md`, partly done. The preliminary tests are finished. Kickoff is Sat 14 Nov 09:00.
+**Phase:** pre-event mode, Phase 0 of `prompts/build.md`. Done except the RTC-S1 downloads, which wait on the ASF data-use agreement, and the T10 rerun that needs them. Kickoff is Sat 14 Nov 09:00.
 
 ## Done, with evidence
 
-- **Clock.** Windows time zone `Pacific Standard Time`, so `EVENT_TZ=America/Los_Angeles`. Before kickoff, so Phase 0 only.
+- **Clock.** Windows time zone `Pacific Standard Time`, so `EVENT_TZ=America/Los_Angeles`.
 - **Setup** (`prompts/setup.md`) done; notes in `prelim/SETUP.md` on branch `prelim`.
-- **Environment.** `dwts` conda env: Python 3.11.18, GDAL 3.10.3, pytest 9.2.0, ffmpeg 9.0.2, gh 2.103.3, Playwright 1.64.1 (pip), headless Chromium 156. The `dswx-sar` env (DSWX-SAR tag DSWx-NI-v1.0) was built by the tests' T10; `dswx_s1.py --help` runs there.
-- **Disk.** Linux ext4 disk: about 900 GB free of 1,007 GB. C: has about 1.1 TB free.
-- **Earthdata.** `~/.netrc` works for PO.DAAC (DSWx) and ASF NISAR.
-- **GitHub.** Public repo https://github.com/dmanpark/dancing-with-the-sars, remote `github`, `main` pushed. Placeholder https://dmanpark.github.io/dancing-with-the-sars/ is live (HTTP 200; iPhone 13 viewport, 0.33 s load, 0 console errors; screenshot `$DWTS_OUT/screens/placeholder_phone.png`).
-- **Preliminary tests** finished 4 Nov. Report `prelim/REPORT.md` on branch `prelim` (commit 84357fe), pushed to `origin`. Headline: the radar side works (flood visible in HH, mask explains the stripes, grids align, tile budget about 151 MB), but claim 1 as specified has no referee pixels: the post −8 h optical pass is all fill inside the NISAR footprint, and no pixel has NISAR, Sentinel-1 and a clear post-event optical map together. Four proposals and eight open questions for the team.
-- **NISAR downloads complete.** All 14 NISAR files in `data/manifest.csv` outside `stretch` (Gandak lead pair, series, history, tier3-phase, fallback; north Bihar heldout roles) are on disk and match `size_mb` within 1 MB (`~/dwts-setup/verify_downloads.py`, 14:25). 64.4 GB on disk in total.
-
-- **Follow-up checks** A to F on the preliminary report, done 4 Nov evening; in `prelim/REPORT.md` on branch `prelim` (commit 1e46e03, pushed to `origin`). Feasibility only; nothing applied.
-  - A (FAIL): the wider optical pair (Landsat 9 27 Sep, Sentinel-2C 1 Oct) is clear on 7.2% and 25.3% of the NISAR and Sentinel-1 overlap and gives 135 new-water pixels there; five other pairs with 26 Sep and 3 Oct give 0. The pre-event maps (clear on 18.5% of the overlap) are the limit. No pass gives a clear optical outline at Bagaha for app step 5 (best 13.9% of the crop).
-  - B: 4 Sep has the same two-part layout as 28 Sep (40 MHz, two observations); `isMixedMode` is True on all four files.
-  - C: HH offset is negative in the upper part and positive in the lower part in both pairs (lead −0.33 / +0.34 dB, control −0.45 / +0.17 dB); HV is inconsistent; the spread inside the upper part alone is as large as frame-wide.
-  - D and E: the HH tiles' second mode is water, flooded fields or a town, not the brightness step (no tested tile spans both parts). Median thresholds differ between the parts by 3.1 dB (HH) and 3.85 dB (HV). Numbers use the literal "valid" reading (permanent water excluded).
-  - F: DSWx-NI peaked at 13.3 GB, ran 10 min 53 s and failed for want of a GLAD land-cover file its schema calls optional. Marked drop.
-- **North Bihar DSWx-S1 water tiles** (`ref-post`, 15 files, 7.9 MB) downloaded 18:37.
-- `main` includes the Windows folder's commit b919e48 (memory limits: 6 GB per process for prelim, 8 GB for the build, at most two heavy jobs), merged as 83d263f.
+- **Step 2, environment.** `dwts` conda env: Python 3.11.18, GDAL 3.10.3, pytest 9.2.0, ffmpeg 9.0.2, gh 2.103.3, Playwright 1.64.1 (pip), headless Chromium 156. The `dswx-sar` env (DSWX-SAR tag DSWx-NI-v1.0) was built by the tests' T10 and runs `dswx_s1.py`.
+- **Step 3, disk.** Linux ext4 disk about 900 GB free of 1,007 GB; C: about 1.1 TB free.
+- **Step 4, downloads.** All 14 NISAR files outside `stretch` (Gandak lead pair, series, history, tier3-phase, fallback; north Bihar heldout roles) match `size_mb` within 1 MB. Gandak DSWx-HLS and DSWx-S1 water tiles and north Bihar DSWx-S1 water tiles on disk. 80 Gandak crop RTC files from the tests on disk. About 66 GB of downloads in all.
+- **Step 5, ancillary layers** for both frames on disk in `~/dwts-data/ancillary/`: GLO-30 DEM and HAND N25 to N28 by E081 to E087 (28 tiles each), WorldCover 2021 (6 tiles), JRC occurrence 80E_30N, GHSL R6_C26 and R6_C27. North Bihar's 18 extra tiles fetched 5 Nov (1.1 GB, all open in GDAL). Sources in `CITATIONS.md`.
+- **Step 6, GitHub.** Public repo https://github.com/dmanpark/dancing-with-the-sars, remote `github`. Placeholder https://dmanpark.github.io/dancing-with-the-sars/ live (HTTP 200; iPhone 13 viewport, 0.33 s, 0 console errors; `$DWTS_OUT/screens/placeholder_phone.png`).
+- **Step 7, preliminary findings.** Every FAIL, PARTIAL and flag is in `DECISIONS.md` with the fallback or team decision it triggers.
+- **Preliminary tests** and follow-ups A to F plus the decision 1 check: `prelim/REPORT.md` on branch `prelim` (latest e7aa06a), pushed to `origin`.
+- **Team decisions** of 4 Nov logged in the change log at the end of `docs/build-spec.md` (9262bd4); page line 1 in `docs/overview.md` now says "under trees". Decision 1's check passed: 12,772 new-water and 232,716 stable-dry pixels in the NISAR and Sentinel-1 overlap, so the head-to-head stays with the Landsat 9 27 Sep and Sentinel-2C 1 Oct referee. 71.8% of that new water sits in 10 of 82 5 km blocks, so expect a wide interval.
 
 ## Waiting on a person
 
-- **ASF data-use agreement** (hard stop 1). ASF answers HTTP 401 "Could Not Login. Be sure to agree to the EULA." for every RTC-S1 file, with both curl and `prep/download.py`. The user accepts it once in a browser while signed in to Earthdata. Downloads are stopped until then.
-- **The team's review** of `prelim/REPORT.md` by Sun 8 Nov: proposals 1 to 4 and the open questions, especially the claim 1 design. Agreed changes are logged at the end of `docs/build-spec.md`.
+- **ASF data-use agreement** (hard stop 1). ASF answers HTTP 401 "Could Not Login. Be sure to agree to the EULA." for every RTC-S1 file (fresh login, 18:36 on 4 Nov). Accept it once at https://urs.earthdata.nasa.gov (profile, EULAs).
 
 ## Not yet downloaded
 
-- Every Gandak and north Bihar RTC-S1 burst (VV, VH, mask, `.h5`; about 12 GB; 80 Gandak crop files from the tests are on disk).
+- Every Gandak and north Bihar RTC-S1 burst except the tests' 80 crop files (VV, VH, mask, `.h5`; about 12 GB).
 
 ## Next
 
-1. After the ASF agreement (still HTTP 401 on a fresh login at 18:36; the follow-up checks are done, so downloads may run): rerun `~/dwts-setup/phase0_downloads.sh` in the "DWTS downloads" window (it resumes and skips finished files), then the size check.
-2. With the RTC bursts on disk: the tests' T10 like-for-like rerun (`python prelim/t10_setup.py --opera-collection`, then `dswx_s1.py`, then `prelim/t10_compare.py`) in the tests session, which updates the report.
-3. After the team's review: rerun `prompts/build.md` for step 5 (ancillary layers for both frames) and step 7 (every FAIL, PARTIAL and flag with its fallback), then stop until 09:00 Sat 14 Nov.
-4. Before Saturday's build: `~/PROJECT_DWTS` is on branch `prelim`; run `git checkout main` there first.
+1. After the ASF agreement: run `~/dwts-setup/phase0_downloads.sh` in a "DWTS downloads" window (curl, resumes, skips finished files), then `~/dwts-setup/verify_downloads.py`.
+2. Then the tests' T10 like-for-like rerun (`python prelim/t10_setup.py --opera-collection`, `dswx_s1.py`, `prelim/t10_compare.py`) in the tests session. If it reaches IoU 0.8, Saturday's DSWx-S1 runs get the full MGRS collection; if not, the spec's fallback in `DECISIONS.md` stands.
+3. Stop until 09:00 Sat 14 Nov. Before the build: `~/PROJECT_DWTS` is on branch `prelim`; run `git checkout main && git pull` there first. `~/dwts-main` is a second worktree on `main` used by the setup session.
 
 ## Notes
 
-- **12 GB memory guard.** The tests stopped DSWx-NI at 12.5 GB because the setup session told them to keep peak memory under about 12 GB after the freeze below. That limit is not in the spec. WSL now has 20 GB of RAM and 16 GB of swap; whether DSWx-NI gets more is the team's call (report, open question 7).
-- **Correction.** At 13:33 a curl test fetched an RTC file from ASF. It got through only because the cookie jar held a session cookie from the NISAR download, which skipped ASF's agreement check for RTC; a fresh login is refused. Nothing more was fetched that way.
-- **VM pause**, 4 Nov about 12:50 to 13:30: the downloads stalled and the tests lost their API connection. Downloads now use curl with resume (`~/dwts-setup/fetch_one.sh`); a Claude session that loses its connection waits for a new prompt.
-- **Memory incident**, 4 Nov about 11:40: Windows ran out of memory and WSL stopped answering. `C:\Users\daria\.wslconfig` now sets `memory=20GB` and `swap=16GB`. Before the event, close what the build does not need (other Claude windows, ChatGPT, Docker Desktop, Steam).
+- **Memory rules** (b919e48, in `prompts/build.md` and `prompts/prelim-tests.md`): 8 GB per process in the build, 6 GB in prelim, at most two heavy jobs at once, no event downloads while preliminary tests run.
+- **Correction.** A curl test at 13:33 on 4 Nov fetched an RTC file only because a NISAR session cookie skipped ASF's agreement check. Nothing more was fetched that way.
+- **VM pause**, 4 Nov about 12:50 to 13:30: downloads stalled and the tests lost their API connection. Downloads now use curl with resume; a Claude session that loses its connection waits for a new prompt.
+- **Memory incident**, 4 Nov about 11:40: Windows ran out of memory and WSL stopped answering. `C:\Users\daria\.wslconfig` sets `memory=20GB` and `swap=16GB`. Before the event, close what the build does not need.
