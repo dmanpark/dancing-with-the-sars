@@ -9,7 +9,7 @@
 **Start it** in an Ubuntu window on the 3090 machine:
 
 ```bash
-cd ~/PROJECT_DWTS && git pull
+cd ~/PROJECT_DWTS && git checkout main && git pull
 claude --permission-mode auto
 ```
 
@@ -76,7 +76,8 @@ The team asks you, through this prompt, to create its public GitHub repo, push `
 4. `docs/data.md`
 5. `git show prelim:prelim/REPORT.md` and `git show prelim:prelim/SETUP.md`: dataset paths, mask values, legends, calibration branch, bimodal tiles, timings, failures.
 6. The change log at the end of `docs/build-spec.md`.
-7. If `STATUS.md` exists, you are resuming: read it, `DECISIONS.md` and `git log -10`, then continue from the first unfinished item.
+7. Check `git branch --show-current` says `main`; if not, `git checkout main` first (the preliminary tests left this clone on `prelim`).
+8. If `STATUS.md` exists, you are resuming: read it, `DECISIONS.md` and `git log -10`, then continue from the first unfinished item.
 
 ## The clock
 
