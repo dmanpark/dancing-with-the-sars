@@ -15,7 +15,7 @@ The heart of it is one slider. You start on Sentinel-1's flood map. Drag the sli
 - **The dance.** NISAR images the same spot every 12 days, so we animate the river from July to October as it rises and spreads.
 - **Listen to the flood.** Tap any field and hear its radar signal change over time. Open water goes low and quiet; flooded forest gets louder.
 - **Why it works.** Two short visuals: open water acts like a mirror, while water under trees bounces the signal off the trunks and straight back. This answers the challenge's question about which polarizations show the change.
-- **How we know.** We check both radars against optical satellite maps from 8 hours before and 16 hours after. We also show the pixels we don't trust, like the gaps between NISAR's swaths, instead of hiding them.
+- **How we know.** We check both radars against optical satellite maps from 27 Sep and 1 Oct, which bracket both passes, and check NISAR on its own against a 29 Sep map in the western part of the frame. We also show the pixels we don't trust, like the gaps between NISAR's swaths, instead of hiding them.
 
 The video runs on two numbers: how many km² of flooding NISAR found where Sentinel-1 said dry, and whether NISAR keeps up with Sentinel-1 on open water.
 
