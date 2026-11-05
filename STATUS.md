@@ -1,6 +1,6 @@
 # Status
 
-Updated Thu 5 Nov 2026, 03:50 America/Los_Angeles (`EVENT_TZ=America/Los_Angeles`).
+Updated Thu 5 Nov 2026, 04:05 America/Los_Angeles (`EVENT_TZ=America/Los_Angeles`).
 
 **Phase:** pre-event mode, Phase 0 of `prompts/build.md`. Done except the RTC-S1 downloads, which wait on the ASF data-use agreement, and the T10 rerun that needs them. Kickoff is Sat 14 Nov 09:00.
 
@@ -15,7 +15,7 @@ Updated Thu 5 Nov 2026, 03:50 America/Los_Angeles (`EVENT_TZ=America/Los_Angeles
 - **Step 6, GitHub.** Public repo https://github.com/dmanpark/dancing-with-the-sars, remote `github`. Placeholder https://dmanpark.github.io/dancing-with-the-sars/ live (HTTP 200; iPhone 13 viewport, 0.33 s, 0 console errors; `$DWTS_OUT/screens/placeholder_phone.png`).
 - **Step 7, preliminary findings.** Every FAIL, PARTIAL and flag is in `DECISIONS.md` with the fallback or team decision it triggers.
 - **Preliminary tests** and follow-ups A to F plus the decision 1 check: `prelim/REPORT.md` on branch `prelim` (latest e7aa06a), pushed to `origin`.
-- **Team decisions** of 4 Nov logged in the change log at the end of `docs/build-spec.md` (9262bd4); page line 1 in `docs/overview.md` now says "under trees". Decision 1's check passed: 12,772 new-water and 232,716 stable-dry pixels in the NISAR and Sentinel-1 overlap, so the head-to-head stays with the Landsat 9 27 Sep and Sentinel-2C 1 Oct referee. 71.8% of that new water sits in 10 of 82 5 km blocks, so expect a wide interval.
+- **Team decisions** of 4 Nov logged in the change log at the end of `docs/build-spec.md` (9262bd4), plus two rows of 5 Nov (fa8ffd0): claim 1a runs as a secondary row in the western frame whatever the head-to-head shows, and "keeps up with Sentinel-1" appears only if the non-inferiority test passes; page line 1 in `docs/overview.md` now says "under trees". Decision 1's check passed: 12,772 new-water and 232,716 stable-dry pixels in the NISAR and Sentinel-1 overlap, so the head-to-head stays with the Landsat 9 27 Sep and Sentinel-2C 1 Oct referee. 71.8% of that new water sits in 10 of 82 5 km blocks, so expect a wide interval.
 
 ## Waiting on a person
 
