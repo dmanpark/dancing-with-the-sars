@@ -45,6 +45,7 @@ These override anything else in this prompt.
 6. **Timeboxes are real.** When a test hits its timebox, write down where it stands, mark it PARTIAL or BLOCKED, and move on.
 7. **Log every command that matters** (installs, downloads, tool runs) in the report's environment section, with versions and wall times.
 8. **Gandak only.** This run needs no north Bihar files; they come later with the rest of the download list.
+9. **Memory.** The 3090 machine has 32 GB shared with Windows, and Ubuntu gets about half; an earlier run froze it. Keep every process under 6 GB: read GCOV datasets in row strips with h5py slicing and average 2 × 2 as you read, never load a whole 20 m frame, fit each tile's Gaussian mixture on at most 50,000 sampled pixels, and run one full-frame step at a time. Check `free -g` before each full-frame test and record each test's peak memory (`/usr/bin/time -v`) in the report. If less than 4 GB is available, wait for other jobs to finish.
 
 ## Shared settings
 
