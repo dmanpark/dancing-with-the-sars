@@ -96,7 +96,7 @@ Events are `gandak` and `nbihar`. Classes use one code set everywhere: 0 dry, 1 
 
 ## Machines
 
-The 3090 machine runs Radar's and Truth's jobs, with data on WSL2's ext4 disk (`~/dwts-data`), never on a Windows drive mounted under `/mnt/c`, which is many times slower for HDF5 reads. Outputs go to `~/dwts-out`, shared read-only over the local network. App and Story work on laptops from that share.
+The 3090 machine runs Radar's and Truth's jobs, with data on WSL2's ext4 disk (`~/dwts-data`), never on a Windows drive mounted under `/mnt/c`, which is many times slower for HDF5 reads. Outputs go to `~/dwts-out`, shared read-only over the local network. App and Story work on laptops from that share. The machine has 32 GB of RAM shared with Windows and Ubuntu gets about half, so the pipeline reads GCOV in row strips and keeps each process under 8 GB; close other heavy apps on Windows during the event.
 
 ## Radar
 
