@@ -1,6 +1,6 @@
 # Dancing with the SARS: The Hidden Steps
 
-Version 3, 3 Nov 2026. Reshaped around the interactive app: the app comes first, claims 1 and 2 are the proof underneath it, and the trust map and check-first list move to Tier 3. Every audit fix from version 2 still applies ([audit.md](audit.md)). Methods, file formats and done-criteria per role: [build-spec.md](build-spec.md). Preliminary tests to run before kickoff: [../prompts/setup.md](../prompts/setup.md).
+Version 3.1, 5 Nov 2026: brought in line with the team's decisions after the preliminary tests (the change log at the end of [build-spec.md](build-spec.md) is the record). Version 3, 3 Nov, reshaped the plan around the interactive app: the app comes first, claims 1 and 2 are the proof underneath it, and the trust map and check-first list move to Tier 3. Every audit fix from version 2 still applies ([audit.md](audit.md)). Methods, file formats and done-criteria per role: [build-spec.md](build-spec.md). Preliminary tests to run before kickoff: [../prompts/setup.md](../prompts/setup.md).
 
 A web app that shows anyone the flood water that today's radar flood maps miss. Bihar's Gandak River hit a record on 27 Sep 2026. NISAR's L-band radar imaged it on 28 Sep and Sentinel-1's C-band radar eleven hours later. One slider moves between the two maps, and the water hiding under trees and crops appears. We check it against optical satellites and show the pixels we can't trust. Built in the 39 hours of NASA Space Apps, 14 to 15 Nov 2026.
 
@@ -33,18 +33,19 @@ One page. The map fills the screen. A step card sits at the bottom on a phone an
 | **2. Two radars** | A slider between Sentinel-1's flood map (29 Sep) and NISAR's (28 Sep) | Where the two radars agree, and where only one sees water | The same detection rules run on both |
 | **3. The hidden steps** | Flooded ground under vegetation that Sentinel-1 called dry, in its own color, labeled "evidence, not verified," with the km² figure. Two small diagrams: open water as a mirror; water under trees bouncing the signal off trunks and back | Why L-band finds water C-band misses, and which polarization shows it (HH brightens, HV much less) | Claim 2 |
 | **4. Listen** | Tap any spot: a small chart of HH and HV across the seven dates, and the same series played as sound. Two voices; open water drops low and quiet, flooded forest jumps up | The flood as something you hear, at any pixel you pick | A coarse time-series grid shipped with the app |
-| **5. How we know** | The optical satellite referee, the two headline numbers with intervals, a toggle that hatches NISAR's swath gaps and shows the fake change a naive difference makes, and the limits box | What to believe, and what not to | Claim 1, the valid mask |
+| **5. How we know** | In the western frame, NISAR against the 29 Sep optical map with claim 1a's number; at Bagaha, DSWx-S1's outline labelled "Sentinel-1's own map" (no optical pass is clear there); the two headline numbers with intervals, a toggle that hatches NISAR's swath gaps and shows the fake change a naive difference makes, and the limits box | What to believe, and what not to | Claims 1 and 1a, the valid mask |
 | **Explore** | Every layer with a legend; the reported breach villages as pins | Free browsing | All of the above |
 
 Tier 3 adds a sixth step, **Check first**: the trust map and a ranked list of 480 m cells to verify, each with the reason it was ranked.
 
 ## What we will show
 
-Two claims carry the project. Each headline is a difference with its own interval, and each has a test that could come out against us.
+Two claims carry the project, with a second check on claim 1 (1a). Each headline is a difference with its own interval, and each has a test that could come out against us.
 
 | Claim | Test | Headline we report | It fails if |
 | --- | --- | --- | --- |
-| **1. Open water, head to head.** NISAR maps new open water at least as well as Sentinel-1. | The same open-water rule on NISAR (HH, HV) and on Sentinel-1 (VV, VH, 17 and 29 Sep RTC), plus OPERA's DSWx-S1, scored only on pixels where both optical maps agree and are cloud-free | F1 difference, NISAR minus Sentinel-1, with a paired 95% interval | The interval's lower end falls below −0.05 (our non-inferiority margin). Reported either way. |
+| **1. Open water, head to head.** NISAR maps new open water at least as well as Sentinel-1. | The same open-water rule on NISAR (HH, HV) and on Sentinel-1 (VV, VH, 17 and 29 Sep RTC), plus OPERA's DSWx-S1, scored only on pixels where two optical maps that bracket both radars (Landsat 9, 27 Sep, 32 h before NISAR; Sentinel-2C, 1 Oct, 64 h after) are clear and agree, with JRC occurrence below 25% standing in for a pre-flood map | F1 difference, NISAR minus Sentinel-1, with a paired 95% interval. Only 12,772 new-water pixels, most in 10 of 82 blocks, so expect a wide interval | The interval's lower end falls below −0.05 (our non-inferiority margin). Reported either way. |
+| **1a. NISAR on its own.** Adding HV makes NISAR's open-water map better than HH alone. | NISAR two-sided open water against the 29 Sep Sentinel-2B map alone (16 h after), in the western frame, where Sentinel-1 has no data (23,857 new-water pixels) | NISAR's F1 with its interval, and the paired F1 difference, two-sided minus HH-only log-ratio | The difference's interval has its lower end below 0. Reported either way. |
 | **2. The hidden steps.** L-band finds flooding under vegetation that C-band calls dry. | On the same vegetated low-ground pixels (HAND < 2 m), the flooded-vegetation flag rate for 16 to 28 Sep minus the rate for the previous 12 days (23 Aug to 4 Sep) | Excess km² flagged where Sentinel-1 saw neither open water nor inundated vegetation | The excess interval includes zero. |
 
 Tier 3, only if Tier 1 is done at the Saturday 18:00 gate:
@@ -70,7 +71,7 @@ Every scene below was found in the ASF and NASA CMR catalogs on 3 Nov. Tiers 1 a
 | Sensor | Before: 16 Sep | Rising river: 28 Sep |
 | --- | --- | --- |
 | NISAR L-band (GCOV) | 13:07 UTC, quad-pol, 7.9 GB | 13:07 UTC, dual-pol HH + HV, 1.9 GB |
-| Optical water maps (OPERA DSWx-HLS) | Sentinel-2B at −8 h; Landsat 8 at +16 h | Sentinel-2C and Landsat 8 at −8 h; Sentinel-2B at +16 h, four tiles at 5 to 12% cloud |
+| Optical water maps (OPERA DSWx-HLS) | Sentinel-2B at −8 h; Landsat 8 at +16 h (no longer used by claim 1: too little of either is clear) | The −8 h pass has no data inside the NISAR footprint. Claim 1 uses Landsat 9 on 27 Sep (−32 h) and Sentinel-2C on 1 Oct (+64 h); claim 1a uses Sentinel-2B on 29 Sep (+16 h), clear only in the western frame |
 | C-band (OPERA DSWx-S1 maps and RTC-S1 backscatter) | Sentinel-1D at +11 h (15 tiles, 54 bursts) and −1 h (1 tile) | Sentinel-1D at +11 h (15 tiles, 54 bursts) and −1 h (1 tile) |
 
 **Control interval.** 23 Aug (quad-pol) to 4 Sep (dual-pol) on the same track: the same 12-day gap and the same mode order as the lead pair.
@@ -86,7 +87,7 @@ Every scene below was found in the ASF and NASA CMR catalogs on 3 Nov. Tiers 1 a
 **Traps we plan around**
 
 - Only PROVISIONAL products (17 Jun 2026 onward). ASF warns against mixing them with the older BETA release, and no data exists from 27 Jul to 10 Aug.
-- Tracks alternate between quad-pol and dual-pol from cycle to cycle. Pairs compare on the shared HH and HV channels, and a fixed rule removes any calibration offset over 0.5 dB measured on stable ground.
+- Tracks alternate between quad-pol and dual-pol from cycle to cycle. Pairs compare on the shared HH and HV channels, and a fixed rule removes any calibration offset over 0.5 dB measured on stable ground. The 28 Sep and 4 Sep frames come in two parts (one subswath above, four below) with different offsets, so each part gets its own offset and its own dark-water threshold.
 - NISAR swaths carry along-track gaps whose positions move between dates. A naive difference lights them up as fake change; the app shows this on purpose in step 5.
 - Water is a few percent of the frame, so dark-water thresholds come from 10 km tiles that pass a bimodality test, as OPERA's DSWx does.
 - Quad-pol phase needs ASF's 59° correction before any decomposition ([known issues](https://nisar-docs.asf.alaska.edu/provisional-known-issues/)). GCOV has no layover or shadow layer, so we mask slopes above 10° from the Copernicus DEM; the plain itself is flat.
@@ -101,13 +102,13 @@ The 2025 submission guide caps the demo at 30 seconds with English subtitles ([g
 | 5 to 11 | Sentinel-1's flood map, vegetated plain left dry | "The world's flood maps use C-band radar. Under trees and crops, it largely misses the water." |
 | 11 to 19 | The slider drags across; the hidden water appears | "NISAR's L-band SAR (synthetic aperture radar) sees through: ___ km² of flooding Sentinel-1 called dry." |
 | 19 to 25 | A finger taps a field; the chart draws and the sound plays | "Tap any field and hear its radar change as the water arrives." |
-| 25 to 30 | Step 5: the referee and the swath-gap toggle; title and link | "On open water it keeps up with Sentinel-1 (F1 ___ vs ___). Checked against optical satellites." |
+| 25 to 30 | Step 5: the referee and the swath-gap toggle; title and link | If the non-inferiority test passes: "On open water it keeps up with Sentinel-1 (F1 ___ vs ___). Checked against optical satellites." Otherwise: "On open water: F1 ___ for NISAR and ___ for Sentinel-1, checked against optical satellites." |
 
 ## Why the results will hold up
 
-- **A fair sensor comparison.** The same detection rules run on NISAR and on Sentinel-1, so claim 1 compares radars rather than algorithms. OPERA's DSWx-S1 and DSWx-NI ([opera-adt/DSWX-SAR](https://github.com/opera-adt/DSWX-SAR)) sit beside them for context.
-- **A referee neither radar depends on.** Optical water maps 8 hours before and 16 hours after the NISAR pass. We score only pixels where both agree and the sky is clear.
-- **New water only.** Permanent rivers and ponds come out first, using JRC surface-water occurrence and the pre-event optical maps.
+- **A fair sensor comparison.** The same detection rules run on NISAR and on Sentinel-1, so claim 1 compares radars rather than algorithms. OPERA's DSWx-S1 ([opera-adt/DSWX-SAR](https://github.com/opera-adt/DSWX-SAR)) sits beside them for context.
+- **A referee neither radar depends on.** Two optical water maps that bracket both radars: Landsat 9 on 27 Sep (32 hours before NISAR) and Sentinel-2C on 1 Oct (64 hours after). We score only pixels where both are clear and agree, so water that arrived in between, including the breach flooding, drops out. No clear pre-flood optical map exists, so JRC's water history (occurrence below 25%) stands in, and some counted water may predate the flood; it counts against both radars equally. Claim 1a uses the 29 Sep Sentinel-2B map (16 hours after) in the western frame.
+- **New water only.** Permanent rivers and ponds come out first, using JRC surface-water occurrence.
 - **A same-pixel control.** Claim 2 subtracts what the detector flags on the same pixels in the 12 days before the flood, which absorbs crop growth and wet soil.
 - **Paired intervals.** Every headline is a difference resampled over 5 km blocks; no random pixel splits.
 - **Thresholds fixed before kickoff.** Written in the build spec, with a calibration rule for the quad-pol to dual-pol switch.
@@ -149,7 +150,6 @@ Tier 1 alone is a complete submission, and it is done by Saturday evening. Every
 | 1 | Video, project page and the limits box | Sun 19:00 | Story |
 | 2 | Steps 3 and 5: hidden-steps layer, diagrams, referee panel, swath-gap toggle | Sun 13:00 | App, Story, Truth |
 | 2 | Step 4: the listening grid and the sound | Sun 13:00 | Radar, App |
-| 2 | OPERA DSWx-NI baseline, timeboxed to 2 hours | Sat 24:00 | Radar |
 | 3 | North Bihar pipeline, claims 3 and 4, the Check first step | Sun 13:00 | Radar, Truth, App |
 | 3 | HH-VV phase test; S-band; the ascending post-breach scene | Sun 13:00 | Radar |
 
@@ -161,7 +161,7 @@ Core maps and both numbers land by Sat 18:00. Saturday night goes to the parts o
 
 | Role | Sat 9:30 to 12 | Sat 12 to 18 | Sat 18 to 24 | Night, 0 to 8 | Sun 8 to 13 | Sun 13 to 21 |
 | --- | --- | --- | --- | --- | --- | --- |
-| Radar | Read, grid, calibration check, log-ratio | Two-sided maps, control pair; series batch in the background | Listening grid; DSWx-NI | Sleep in shifts | North Bihar if Tier 3; otherwise a gallery of where NISAR fails | Methods and limits |
+| Radar | Read, grid, calibration check, log-ratio | Two-sided maps, control pair; series batch in the background | Listening grid; failure gallery | Sleep in shifts | North Bihar if Tier 3; otherwise a gallery of where NISAR fails | Methods and limits |
 | Truth | Start north Bihar DSWx-S1 at 9:05 in the background; optical and C-band references | Claims 1 and 2 | Numbers and failure examples for step 5 | Sleep in shifts | Claims 3 and 4 if Tier 3; otherwise recheck every number | Final numbers on the page |
 | App | Ancillary layers on the grid, then the app shell deployed | Real tiles, the dance, the slider | Step 4 sound and chart; step 3 layer | Sleep in shifts | Step 5, the tour, phone polish | Link tests on a phone |
 | Story | Breach sites; page skeleton; storyboard | Summary draft; the two diagrams | Tune the sound with App; storyboard frames | Sleep in shifts | Record the app, first cut | 30 s video, subtitles, page fields |
@@ -175,9 +175,9 @@ If the flood does not show at the 12:00 gate, everyone helps Radar until it does
 | Risk | When we know | Fallback |
 | --- | --- | --- |
 | Downloads too slow before the event | Wed 11 Nov | Harmony variable subsetting: pull only HHHH, HVHV and the mask; north Bihar dropped first |
-| DSWX-SAR will not install | Sun 8 Nov (prelim tests) | Our Sentinel-1 rules stand in for DSWx-S1 where we need it; DSWx-NI is dropped and the methods say so |
-| Quad-pol and dual-pol differ by more than 0.5 dB on stable ground | Sun 8 Nov (prelim tests) | The fixed offset rule; if the offset varies across the frame, per-tile offsets, plus claim 1 rerun on 4 Sep → 28 Sep (both dual-pol) as a check |
-| Fewer than 5 tiles pass the bimodality test | Sun 8 Nov (prelim tests) | The log-ratio cut alone, stated |
+| DSWX-SAR will not install | Known 4 Nov: it installs; DSWx-NI needs over 13 GB, so it is dropped | Our Sentinel-1 rules stand in for DSWx-S1 where we need it; the methods say DSWx-NI was dropped |
+| Quad-pol and dual-pol differ by more than 0.5 dB on stable ground | Known 4 Nov: they do (HH −0.33 / +0.34 dB by part, HV −0.9 to −1.3 dB) | One median offset per channel for each part of the frame, per pair; claim 2 is also reported with the offsets shifted by half the tile spread up and down |
+| Fewer than 5 tiles pass the bimodality test | Known 4 Nov: enough pass (HH 71, HV 205) | Thresholds are computed per part of the frame; the log-ratio cut alone if a part has fewer than 5 |
 | The HH log-ratio shows no flood | Sat 12:00 | Check dB conversion, mask and HH-to-HH matching; then switch to the ascending pair (19 Sep to 1 Oct, already downloaded) |
 | Claim 2's excess interval includes zero | Sat 18:00 | Step 3 becomes "where L-band helps and where it doesn't," with the same layer and an honest number; the video leads with the dance and claim 1 |
 | The sound is confusing or grating | Sat 24:00 | Off by default behind a Listen button; the chart always shows; cut step 4 from the video if it doesn't help |
