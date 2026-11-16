@@ -1,0 +1,19 @@
+1
+00:00:00,000 --> 00:00:04,950
+Every monsoon the Gandak dances across Bihar. In 2026 it broke its record.
+
+2
+00:00:05,000 --> 00:00:10,950
+The world's flood maps use C-band radar. Under trees, it largely misses the water.
+
+3
+00:00:11,000 --> 00:00:18,950
+NISAR's L-band SAR (synthetic aperture radar) sees through: evidence of 17 km² of flooding Sentinel-1 called dry.
+
+4
+00:00:19,000 --> 00:00:23,950
+Tap any field and hear its radar change as the water arrives.
+
+5
+00:00:24,000 --> 00:00:29,850
+Checked against optical satellites: on open water, Sentinel-1 did better (F1 0.17 vs 0.05).

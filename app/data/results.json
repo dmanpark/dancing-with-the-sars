@@ -1,0 +1,815 @@
+{
+ "generated_utc": "2026-11-15T03:35:15Z",
+ "commit": "50af006",
+ "event": "gandak",
+ "passes": {
+  "nisar_pre": "2026-09-16T13:07:04Z",
+  "nisar_post": "2026-09-28T13:07:05Z",
+  "s1_pre": "2026-09-17T00:18:59Z",
+  "s1_post": "2026-09-29T00:18:59Z",
+  "control_pre": "2026-08-23T13:07:05Z",
+  "control_post": "2026-09-04T13:07:05Z",
+  "optical_post_before": "2026-09-27T04:48:00Z",
+  "optical_post_after": "2026-10-01T04:57:01Z",
+  "optical_1a": "2026-09-29T05:06:49Z"
+ },
+ "time_offsets_h": {
+  "s1": 11.2,
+  "optical_post_before": -32.3,
+  "optical_post_after": 63.8,
+  "optical_1a": 16.0
+ },
+ "calibration": {
+  "lead": {
+   "hh_db": -0.3171,
+   "hv_db": -0.9257,
+   "branch": {
+    "hh": "per_part",
+    "hv": "per_part"
+   },
+   "n_stable": 398398,
+   "offsets_subtracted": {
+    "hh": {
+     "upper": {
+      "offset_db": -0.335,
+      "n_stable": 385836
+     },
+     "lower": {
+      "offset_db": 0.3431,
+      "n_stable": 12562
+     }
+    },
+    "hv": {
+     "upper": {
+      "offset_db": -0.9173,
+      "n_stable": 385836
+     },
+     "lower": {
+      "offset_db": -1.2069,
+      "n_stable": 12562
+     }
+    }
+   },
+   "tile_spread_db": {
+    "hh": 0.9834,
+    "hv": 1.051
+   }
+  },
+  "control": {
+   "hh_db": -0.4269,
+   "hv_db": -0.5304,
+   "branch": {
+    "hh": "per_part",
+    "hv": "per_part"
+   },
+   "n_stable": 399409,
+   "offsets_subtracted": {
+    "hh": {
+     "upper": {
+      "offset_db": -0.4486,
+      "n_stable": 386934
+     },
+     "lower": {
+      "offset_db": 0.1653,
+      "n_stable": 12475
+     }
+    },
+    "hv": {
+     "upper": {
+      "offset_db": -0.5356,
+      "n_stable": 386934
+     },
+     "lower": {
+      "offset_db": -0.3696,
+      "n_stable": 12475
+     }
+    }
+   },
+   "tile_spread_db": {
+    "hh": 1.4232,
+    "hv": 0.969
+   }
+  },
+  "s1": {
+   "vv_db": 0.1896,
+   "vh_db": 0.1178,
+   "branch": {
+    "vv": "per_part",
+    "vh": "per_part"
+   },
+   "n_stable": 701461,
+   "offsets_subtracted": {
+    "vv": {
+     "frame": {
+      "offset_db": 0.1896,
+      "n_stable": 701461
+     }
+    },
+    "vh": {
+     "frame": {
+      "offset_db": 0.1178,
+      "n_stable": 701461
+     }
+    }
+   },
+   "tile_spread_db": {
+    "vv": 0.6438,
+    "vh": 0.5705
+   }
+  },
+  "check_0904": {
+   "hh_db": 0.2188,
+   "hv_db": 0.0964,
+   "branch": {
+    "hh": "none",
+    "hv": "none"
+   },
+   "n_stable": 469636,
+   "offsets_subtracted": {
+    "hh": {
+     "frame": {
+      "offset_db": 0.0,
+      "n_stable": 469636
+     }
+    },
+    "hv": {
+     "frame": {
+      "offset_db": 0.0,
+      "n_stable": 469636
+     }
+    }
+   },
+   "tile_spread_db": {
+    "hh": 0.3698,
+    "hv": 0.3602
+   }
+  }
+ },
+ "thresholds": {
+  "lead_post_hh": {
+   "lower": {
+    "tiles_tested": 252,
+    "tiles_passing": 36,
+    "db": -14.45,
+    "fallback": null
+   },
+   "upper": {
+    "tiles_tested": 159,
+    "tiles_passing": 35,
+    "db": -10.9,
+    "fallback": null
+   }
+  },
+  "lead_post_hv": {
+   "lower": {
+    "tiles_tested": 252,
+    "tiles_passing": 104,
+    "db": -19.5,
+    "fallback": null
+   },
+   "upper": {
+    "tiles_tested": 159,
+    "tiles_passing": 102,
+    "db": -15.8,
+    "fallback": null
+   }
+  },
+  "control_post_hh": {
+   "lower": {
+    "tiles_tested": 249,
+    "tiles_passing": 50,
+    "db": -14.3,
+    "fallback": null
+   },
+   "upper": {
+    "tiles_tested": 156,
+    "tiles_passing": 15,
+    "db": -12.6,
+    "fallback": null
+   }
+  },
+  "control_post_hv": {
+   "lower": {
+    "tiles_tested": 249,
+    "tiles_passing": 170,
+    "db": -15.6,
+    "fallback": null
+   },
+   "upper": {
+    "tiles_tested": 156,
+    "tiles_passing": 98,
+    "db": -15.0,
+    "fallback": null
+   }
+  },
+  "s1_post_vv": {
+   "frame": {
+    "tiles_tested": 567,
+    "tiles_passing": 115,
+    "db": -14.1,
+    "fallback": null
+   }
+  },
+  "s1_post_vh": {
+   "frame": {
+    "tiles_tested": 567,
+    "tiles_passing": 160,
+    "db": -19.5,
+    "fallback": null
+   }
+  },
+  "check_0904_post_hh": {
+   "lower": {
+    "tiles_tested": 252,
+    "tiles_passing": 36,
+    "db": -14.3,
+    "fallback": null
+   },
+   "upper": {
+    "tiles_tested": 180,
+    "tiles_passing": 41,
+    "db": -10.9,
+    "fallback": null
+   }
+  },
+  "check_0904_post_hv": {
+   "lower": {
+    "tiles_tested": 252,
+    "tiles_passing": 104,
+    "db": -19.5,
+    "fallback": null
+   },
+   "upper": {
+    "tiles_tested": 180,
+    "tiles_passing": 117,
+    "db": -15.8,
+    "fallback": null
+   }
+  }
+ },
+ "claim1": {
+  "metric": "F1",
+  "margin": -0.05,
+  "nisar_twosided": {
+   "f1": 0.0509,
+   "precision": 0.6048,
+   "recall": 0.0266,
+   "iou": 0.0261,
+   "ci95": [
+    0.0144,
+    0.1205
+   ],
+   "tp": 300,
+   "fp": 196,
+   "fn": 10988
+  },
+  "s1_twosided": {
+   "f1": 0.1721,
+   "precision": 0.9443,
+   "recall": 0.0947,
+   "iou": 0.0942,
+   "ci95": [
+    0.0779,
+    0.2672
+   ],
+   "tp": 1069,
+   "fp": 63,
+   "fn": 10219
+  },
+  "others": {
+   "nisar_lr": {
+    "f1": 0.0509,
+    "precision": 0.6,
+    "recall": 0.0266,
+    "iou": 0.0261,
+    "ci95": [
+     0.0144,
+     0.1204
+    ],
+    "tp": 300,
+    "fp": 200,
+    "fn": 10988
+   },
+   "s1_lr": {
+    "f1": 0.1723,
+    "precision": 0.9427,
+    "recall": 0.0948,
+    "iou": 0.0942,
+    "ci95": [
+     0.0781,
+     0.2674
+    ],
+    "tp": 1070,
+    "fp": 65,
+    "fn": 10218
+   },
+   "dswx_s1": {
+    "f1": 0.0641,
+    "precision": 0.9014,
+    "recall": 0.0332,
+    "iou": 0.0331,
+    "ci95": [
+     0.029,
+     0.1342
+    ],
+    "tp": 375,
+    "fp": 41,
+    "fn": 10913
+   },
+   "dswx_ni": null
+  },
+  "dswx_ni_note": "DSWx-NI dropped before the event (build-spec change log, 4 Nov): it peaked at 13.3 GB, over the 8 GB per-process limit, and failed for want of a GLAD land-cover file its schema calls optional.",
+  "diff": -0.1212,
+  "ci95": [
+   -0.2041,
+   -0.03
+  ],
+  "noninferior": false,
+  "n_pixels": 230621,
+  "n_new_water": 11288,
+  "n_stable_dry": 219333,
+  "n_blocks": 253,
+  "by_landcover": {
+   "10": {
+    "name": "tree cover",
+    "n_pixels": 32054,
+    "n_new_water": 85,
+    "nisar_twosided": {
+     "f1": 0.0227,
+     "tp": 1,
+     "fp": 2,
+     "fn": 84
+    },
+    "s1_twosided": {
+     "f1": 0.1111,
+     "tp": 5,
+     "fp": 0,
+     "fn": 80
+    },
+    "nisar_lr": {
+     "f1": 0.0225,
+     "tp": 1,
+     "fp": 3,
+     "fn": 84
+    },
+    "s1_lr": {
+     "f1": 0.1111,
+     "tp": 5,
+     "fp": 0,
+     "fn": 80
+    },
+    "dswx_s1": {
+     "f1": 0.0899,
+     "tp": 4,
+     "fp": 0,
+     "fn": 81
+    }
+   },
+   "30": {
+    "name": "grassland",
+    "n_pixels": 6589,
+    "n_new_water": 764,
+    "nisar_twosided": {
+     "f1": 0.1594,
+     "tp": 69,
+     "fp": 33,
+     "fn": 695
+    },
+    "s1_twosided": {
+     "f1": 0.2449,
+     "tp": 108,
+     "fp": 10,
+     "fn": 656
+    },
+    "nisar_lr": {
+     "f1": 0.1592,
+     "tp": 69,
+     "fp": 34,
+     "fn": 695
+    },
+    "s1_lr": {
+     "f1": 0.2449,
+     "tp": 108,
+     "fp": 10,
+     "fn": 656
+    },
+    "dswx_s1": {
+     "f1": 0.075,
+     "tp": 30,
+     "fp": 6,
+     "fn": 734
+    }
+   },
+   "40": {
+    "name": "cropland",
+    "n_pixels": 173403,
+    "n_new_water": 8478,
+    "nisar_twosided": {
+     "f1": 0.0413,
+     "tp": 182,
+     "fp": 159,
+     "fn": 8296
+    },
+    "s1_twosided": {
+     "f1": 0.1505,
+     "tp": 694,
+     "fp": 48,
+     "fn": 7784
+    },
+    "nisar_lr": {
+     "f1": 0.0413,
+     "tp": 182,
+     "fp": 161,
+     "fn": 8296
+    },
+    "s1_lr": {
+     "f1": 0.1507,
+     "tp": 695,
+     "fp": 50,
+     "fn": 7783
+    },
+    "dswx_s1": {
+     "f1": 0.0582,
+     "tp": 255,
+     "fp": 33,
+     "fn": 8223
+    }
+   },
+   "50": {
+    "name": "built-up",
+    "n_pixels": 15931,
+    "n_new_water": 14,
+    "nisar_twosided": {
+     "f1": 0.0,
+     "tp": 0,
+     "fp": 0,
+     "fn": 14
+    },
+    "s1_twosided": {
+     "f1": 0.5926,
+     "tp": 8,
+     "fp": 5,
+     "fn": 6
+    },
+    "nisar_lr": {
+     "f1": 0.0,
+     "tp": 0,
+     "fp": 0,
+     "fn": 14
+    },
+    "s1_lr": {
+     "f1": 0.5926,
+     "tp": 8,
+     "fp": 5,
+     "fn": 6
+    },
+    "dswx_s1": {
+     "f1": 0.0,
+     "tp": 0,
+     "fp": 0,
+     "fn": 14
+    }
+   },
+   "60": {
+    "name": "bare",
+    "n_pixels": 610,
+    "n_new_water": 265,
+    "nisar_twosided": {
+     "f1": 0.0,
+     "tp": 0,
+     "fp": 2,
+     "fn": 265
+    },
+    "s1_twosided": {
+     "f1": 0.1206,
+     "tp": 17,
+     "fp": 0,
+     "fn": 248
+    },
+    "nisar_lr": {
+     "f1": 0.0,
+     "tp": 0,
+     "fp": 2,
+     "fn": 265
+    },
+    "s1_lr": {
+     "f1": 0.1206,
+     "tp": 17,
+     "fp": 0,
+     "fn": 248
+    },
+    "dswx_s1": {
+     "f1": 0.0297,
+     "tp": 4,
+     "fp": 0,
+     "fn": 261
+    }
+   },
+   "80": {
+    "name": "permanent water",
+    "n_pixels": 1806,
+    "n_new_water": 1663,
+    "nisar_twosided": {
+     "f1": 0.0561,
+     "tp": 48,
+     "fp": 0,
+     "fn": 1615
+    },
+    "s1_twosided": {
+     "f1": 0.2476,
+     "tp": 235,
+     "fp": 0,
+     "fn": 1428
+    },
+    "nisar_lr": {
+     "f1": 0.0561,
+     "tp": 48,
+     "fp": 0,
+     "fn": 1615
+    },
+    "s1_lr": {
+     "f1": 0.2476,
+     "tp": 235,
+     "fp": 0,
+     "fn": 1428
+    },
+    "dswx_s1": {
+     "f1": 0.0928,
+     "tp": 81,
+     "fp": 1,
+     "fn": 1582
+    }
+   },
+   "90": {
+    "name": "herbaceous wetland",
+    "n_pixels": 228,
+    "n_new_water": 19,
+    "nisar_twosided": {
+     "f1": 0.0,
+     "tp": 0,
+     "fp": 0,
+     "fn": 19
+    },
+    "s1_twosided": {
+     "f1": 0.1905,
+     "tp": 2,
+     "fp": 0,
+     "fn": 17
+    },
+    "nisar_lr": {
+     "f1": 0.0,
+     "tp": 0,
+     "fp": 0,
+     "fn": 19
+    },
+    "s1_lr": {
+     "f1": 0.1905,
+     "tp": 2,
+     "fp": 0,
+     "fn": 17
+    },
+    "dswx_s1": {
+     "f1": 0.0952,
+     "tp": 1,
+     "fp": 1,
+     "fn": 18
+    }
+   }
+  }
+ },
+ "claim1a": {
+  "metric": "F1",
+  "referee": "Sentinel-2B DSWx-HLS 29 Sep alone (+16 h), western frame",
+  "nisar_twosided": {
+   "f1": 0.6763,
+   "precision": 0.5902,
+   "recall": 0.7919,
+   "iou": 0.5109,
+   "ci95": [
+    0.5282,
+    0.7629
+   ],
+   "tp": 18973,
+   "fp": 13176,
+   "fn": 4987
+  },
+  "nisar_lr": {
+   "f1": 0.674,
+   "precision": 0.5865,
+   "recall": 0.7921,
+   "iou": 0.5083,
+   "ci95": [
+    0.5252,
+    0.7613
+   ],
+   "tp": 18979,
+   "fp": 13380,
+   "fn": 4981
+  },
+  "diff": 0.0023,
+  "ci95": [
+   0.0014,
+   0.0037
+  ],
+  "passes": true,
+  "n_pixels": 2502855,
+  "n_new_water": 23960,
+  "n_blocks": 587
+ },
+ "claim1_check_0904": {
+  "note": "Claim 1 rerun on 4 Sep -> 28 Sep (both dual-pol), the check the calibration rule asks for when the offset varies",
+  "nisar_twosided": {
+   "f1": 0.041,
+   "precision": 0.596,
+   "recall": 0.0212,
+   "iou": 0.0209,
+   "ci95": [
+    0.0104,
+    0.0992
+   ],
+   "tp": 239,
+   "fp": 162,
+   "fn": 11011
+  },
+  "s1_twosided": {
+   "f1": 0.167,
+   "precision": 0.9424,
+   "recall": 0.0916,
+   "iou": 0.0911,
+   "ci95": [
+    0.0787,
+    0.2593
+   ],
+   "tp": 1031,
+   "fp": 63,
+   "fn": 10219
+  },
+  "diff": -0.126,
+  "ci95": [
+   -0.2087,
+   -0.0345
+  ],
+  "noninferior": false,
+  "n_pixels": 230260,
+  "n_new_water": 11250
+ },
+ "claim2": {
+  "vegetation": {
+   "excess_km2": 17.04,
+   "ci95": [
+    15.02,
+    19.46
+   ],
+   "flood_km2": 19.58,
+   "control_km2": 2.54,
+   "n_pixels": 1254560,
+   "area_km2": 2007.3,
+   "n_blocks": 1461,
+   "passes": true,
+   "classes": [
+    10,
+    20,
+    90
+   ]
+  },
+  "cropland": {
+   "excess_km2": -105.27,
+   "ci95": [
+    -146.3,
+    -60.01
+   ],
+   "flood_km2": 238.32,
+   "control_km2": 343.6,
+   "n_pixels": 11487484,
+   "area_km2": 18380.0,
+   "n_blocks": 1430,
+   "passes": false,
+   "classes": [
+    40
+   ]
+  },
+  "sensitivity": {
+   "note": "Offsets shifted by half the tile spread of their own pair and channel (change-log row 4); every offset up together, then every offset down together.",
+   "half_spread_db": {
+    "lh": 0.492,
+    "lv": 0.525,
+    "ch": 0.712,
+    "cv": 0.484
+   },
+   "offsets_up": {
+    "vegetation": {
+     "excess_km2": 10.93,
+     "ci95": [
+      9.42,
+      12.75
+     ],
+     "flood_km2": 11.86,
+     "control_km2": 0.93,
+     "n_pixels": 1254560,
+     "area_km2": 2007.3,
+     "n_blocks": 1461,
+     "passes": true
+    },
+    "cropland": {
+     "excess_km2": -13.41,
+     "ci95": [
+      -45.91,
+      25.55
+     ],
+     "flood_km2": 168.25,
+     "control_km2": 181.66,
+     "n_pixels": 11487484,
+     "area_km2": 18380.0,
+     "n_blocks": 1430,
+     "passes": false
+    }
+   },
+   "offsets_down": {
+    "vegetation": {
+     "excess_km2": 23.88,
+     "ci95": [
+      21.1,
+      27.21
+     ],
+     "flood_km2": 32.03,
+     "control_km2": 8.14,
+     "n_pixels": 1254560,
+     "area_km2": 2007.3,
+     "n_blocks": 1461,
+     "passes": true
+    },
+    "cropland": {
+     "excess_km2": -325.19,
+     "ci95": [
+      -381.28,
+      -265.55
+     ],
+     "flood_km2": 353.22,
+     "control_km2": 678.41,
+     "n_pixels": 11487484,
+     "area_km2": 18380.0,
+     "n_blocks": 1430,
+     "passes": false
+    }
+   }
+  },
+  "secondary": {
+   "dropped": true,
+   "note": "Dropped by the team's change-log decision of 4 Nov (prelim T11 found high-HAND, gentle ground under 5% of every class's pixels). Recounted here on pixels valid for the lead pair, whose definition already excludes slopes over 10 degrees, the shares are higher than T11's (tree cover and shrubland above 5%); flagged to the team, decision unchanged.",
+   "classes": {
+    "10": {
+     "name": "tree cover",
+     "valid_px": 4991525,
+     "high_gentle_px": 355724,
+     "share_of_valid": 0.0713,
+     "dropped": true
+    },
+    "20": {
+     "name": "shrubland",
+     "valid_px": 14902,
+     "high_gentle_px": 761,
+     "share_of_valid": 0.0511,
+     "dropped": true
+    },
+    "90": {
+     "name": "herbaceous wetland",
+     "valid_px": 42676,
+     "high_gentle_px": 0,
+     "share_of_valid": 0.0,
+     "dropped": true
+    },
+    "40": {
+     "name": "cropland",
+     "valid_px": 18245180,
+     "high_gentle_px": 28352,
+     "share_of_valid": 0.0016,
+     "dropped": true
+    }
+   }
+  }
+ },
+ "failure_gallery": {
+  "veg_flags": 316436,
+  "veg_flags_s1_known": 248576,
+  "veg_flags_on_s1_water": 29287,
+  "s1_referee_only_px": 10219,
+  "s1_referee_only_dark_on_17sep": 9213,
+  "hidden_px": 12237,
+  "hidden_near_builtup_px": 6317,
+  "claim2_set_px": 1254560,
+  "claim2_set_near_builtup_px": 306839,
+  "near_builtup_rule": "mean GHSL built-up share >= 0.05 in the 7 x 7 pixel (280 m) window around the pixel",
+  "rows": 110,
+  "referee_only_px": 10988,
+  "referee_only_dark_on_16sep": 9843,
+  "referee_only_dark_on_28sep": 9232,
+  "referee_only_hh_drop_smaller_than_3db": 10973,
+  "nisar_only_px": 196
+ },
+ "tier3": null,
+ "cuts": [
+  "Tier 3 (claims 3 and 4, north Bihar, Check first, phase test, S-band): cut at 14:28 Sat 14 Nov after the late start",
+  "DSWx-NI: dropped before the event (change log, 4 Nov)"
+ ],
+ "seconds": 48.4
+}

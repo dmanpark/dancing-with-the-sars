@@ -1,0 +1,303 @@
+{
+ "layers": [
+  {
+   "id": "hh_20260706",
+   "kind": "continuous",
+   "date": "2026-07-06",
+   "title": "NISAR HH, 6 Jul 2026",
+   "description": "L-band radar brightness (HH, gamma0), gray from -25 dB (black) to 0 dB (white); swath gaps left out.",
+   "legend": [
+    {
+     "color": "#000000",
+     "label": "-25 dB, smooth water"
+    },
+    {
+     "color": "#ffffff",
+     "label": "0 dB, rough or built-up"
+    }
+   ],
+   "file": "tiles/hh_20260706.pmtiles",
+   "minzoom": 6,
+   "maxzoom": 12
+  },
+  {
+   "id": "hh_20260823",
+   "kind": "continuous",
+   "date": "2026-08-23",
+   "title": "NISAR HH, 23 Aug 2026",
+   "description": "L-band radar brightness (HH, gamma0), gray from -25 dB (black) to 0 dB (white); swath gaps left out.",
+   "legend": [
+    {
+     "color": "#000000",
+     "label": "-25 dB, smooth water"
+    },
+    {
+     "color": "#ffffff",
+     "label": "0 dB, rough or built-up"
+    }
+   ],
+   "file": "tiles/hh_20260823.pmtiles",
+   "minzoom": 6,
+   "maxzoom": 12
+  },
+  {
+   "id": "hh_20260904",
+   "kind": "continuous",
+   "date": "2026-09-04",
+   "title": "NISAR HH, 4 Sep 2026",
+   "description": "L-band radar brightness (HH, gamma0), gray from -25 dB (black) to 0 dB (white); swath gaps left out.",
+   "legend": [
+    {
+     "color": "#000000",
+     "label": "-25 dB, smooth water"
+    },
+    {
+     "color": "#ffffff",
+     "label": "0 dB, rough or built-up"
+    }
+   ],
+   "file": "tiles/hh_20260904.pmtiles",
+   "minzoom": 6,
+   "maxzoom": 12
+  },
+  {
+   "id": "hh_20260916",
+   "kind": "continuous",
+   "date": "2026-09-16",
+   "title": "NISAR HH, 16 Sep 2026",
+   "description": "L-band radar brightness (HH, gamma0), gray from -25 dB (black) to 0 dB (white); swath gaps left out.",
+   "legend": [
+    {
+     "color": "#000000",
+     "label": "-25 dB, smooth water"
+    },
+    {
+     "color": "#ffffff",
+     "label": "0 dB, rough or built-up"
+    }
+   ],
+   "file": "tiles/hh_20260916.pmtiles",
+   "minzoom": 6,
+   "maxzoom": 12
+  },
+  {
+   "id": "hh_20260928",
+   "kind": "continuous",
+   "date": "2026-09-28",
+   "title": "NISAR HH, 28 Sep 2026",
+   "description": "L-band radar brightness (HH, gamma0), gray from -25 dB (black) to 0 dB (white); swath gaps left out.",
+   "legend": [
+    {
+     "color": "#000000",
+     "label": "-25 dB, smooth water"
+    },
+    {
+     "color": "#ffffff",
+     "label": "0 dB, rough or built-up"
+    }
+   ],
+   "file": "tiles/hh_20260928.pmtiles",
+   "minzoom": 6,
+   "maxzoom": 12
+  },
+  {
+   "id": "hh_20261010",
+   "kind": "continuous",
+   "date": "2026-10-10",
+   "title": "NISAR HH, 10 Oct 2026",
+   "description": "L-band radar brightness (HH, gamma0), gray from -25 dB (black) to 0 dB (white); swath gaps left out.",
+   "legend": [
+    {
+     "color": "#000000",
+     "label": "-25 dB, smooth water"
+    },
+    {
+     "color": "#ffffff",
+     "label": "0 dB, rough or built-up"
+    }
+   ],
+   "file": "tiles/hh_20261010.pmtiles",
+   "minzoom": 6,
+   "maxzoom": 12
+  },
+  {
+   "id": "hh_20261022",
+   "kind": "continuous",
+   "date": "2026-10-22",
+   "title": "NISAR HH, 22 Oct 2026",
+   "description": "L-band radar brightness (HH, gamma0), gray from -25 dB (black) to 0 dB (white); swath gaps left out.",
+   "legend": [
+    {
+     "color": "#000000",
+     "label": "-25 dB, smooth water"
+    },
+    {
+     "color": "#ffffff",
+     "label": "0 dB, rough or built-up"
+    }
+   ],
+   "file": "tiles/hh_20261022.pmtiles",
+   "minzoom": 6,
+   "maxzoom": 12
+  },
+  {
+   "id": "s1_twosided",
+   "kind": "class",
+   "date": null,
+   "title": "Sentinel-1 flood map, 17 to 29 Sep 00:18 UTC",
+   "description": "C-band two-sided rule: new open water in blue; permanent water light blue.",
+   "legend": [
+    {
+     "color": "#0072B2",
+     "label": "New open water"
+    },
+    {
+     "color": "#56B4E9",
+     "label": "Permanent water"
+    }
+   ],
+   "file": "tiles/s1_twosided.pmtiles",
+   "minzoom": 6,
+   "maxzoom": 12
+  },
+  {
+   "id": "nisar_twosided",
+   "kind": "class",
+   "date": null,
+   "title": "NISAR flood map, 16 to 28 Sep 13:07 UTC",
+   "description": "L-band two-sided detector: new open water in blue, flooded vegetation in orange.",
+   "legend": [
+    {
+     "color": "#0072B2",
+     "label": "New open water"
+    },
+    {
+     "color": "#E69F00",
+     "label": "Flooded vegetation"
+    },
+    {
+     "color": "#56B4E9",
+     "label": "Permanent water"
+    }
+   ],
+   "file": "tiles/nisar_twosided.pmtiles",
+   "minzoom": 6,
+   "maxzoom": 12
+  },
+  {
+   "id": "hidden",
+   "kind": "class",
+   "date": null,
+   "title": "Hidden steps (evidence, not verified)",
+   "description": "Low ground under trees where NISAR flagged flooded vegetation on 28 Sep and Sentinel-1 saw dry land.",
+   "legend": [
+    {
+     "color": "#E69F00",
+     "label": "Flagged under vegetation, evidence, not verified"
+    }
+   ],
+   "file": "tiles/hidden.pmtiles",
+   "minzoom": 6,
+   "maxzoom": 12
+  },
+  {
+   "id": "referee",
+   "kind": "class",
+   "date": null,
+   "title": "Optical referee: new water (L9 27 Sep and S2C 1 Oct)",
+   "description": "Water in both optical maps, both clear, JRC occurrence below 25%: what claim 1 scores against.",
+   "legend": [
+    {
+     "color": "#009E73",
+     "label": "New water outline"
+    }
+   ],
+   "file": "tiles/referee.pmtiles",
+   "minzoom": 6,
+   "maxzoom": 12
+  },
+  {
+   "id": "referee_1a",
+   "kind": "class",
+   "date": null,
+   "title": "Optical referee 1a: new water on 29 Sep (Sentinel-2B)",
+   "description": "Water in the 29 Sep Sentinel-2B map, not water in a clear pre-flood map; western frame only.",
+   "legend": [
+    {
+     "color": "#009E73",
+     "label": "New water outline"
+    }
+   ],
+   "file": "tiles/referee_1a.pmtiles",
+   "minzoom": 6,
+   "maxzoom": 12
+  },
+  {
+   "id": "dswx_s1_outline",
+   "kind": "class",
+   "date": null,
+   "title": "Sentinel-1's own map (OPERA DSWx-S1), new water",
+   "description": "Open water on 29 Sep and not on 17 Sep in OPERA's DSWx-S1 product.",
+   "legend": [
+    {
+     "color": "#CC79A7",
+     "label": "New water outline"
+    }
+   ],
+   "file": "tiles/dswx_s1_outline.pmtiles",
+   "minzoom": 6,
+   "maxzoom": 12
+  },
+  {
+   "id": "lr_raw",
+   "kind": "continuous",
+   "date": null,
+   "title": "Naive difference, HH 28 Sep minus 16 Sep",
+   "description": "Raw HH change with no mask: the swath-gap edges light up as fake change.",
+   "legend": [
+    {
+     "color": "#b2182b",
+     "label": "-8 dB, darker (water arrived)"
+    },
+    {
+     "color": "#2166ac",
+     "label": "+8 dB, brighter"
+    }
+   ],
+   "file": "tiles/lr_raw.pmtiles",
+   "minzoom": 6,
+   "maxzoom": 11
+  },
+  {
+   "id": "lr_valid",
+   "kind": "continuous",
+   "date": null,
+   "title": "What we trust, HH change with the valid mask",
+   "description": "Calibrated HH log-ratio, 3 x 3 median, only where both dates are fully focused and slope is at most 10 degrees.",
+   "legend": [
+    {
+     "color": "#b2182b",
+     "label": "-8 dB, darker (water arrived)"
+    },
+    {
+     "color": "#2166ac",
+     "label": "+8 dB, brighter"
+    }
+   ],
+   "file": "tiles/lr_valid.pmtiles",
+   "minzoom": 6,
+   "maxzoom": 12
+  }
+ ],
+ "bounds": [
+  81.869,
+  25.1776,
+  85.382,
+  28.2787
+ ],
+ "center": [
+  84.1,
+  27.0
+ ],
+ "gaps": "data/gaps.geojson"
+}

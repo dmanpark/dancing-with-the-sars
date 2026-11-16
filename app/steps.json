@@ -1,0 +1,326 @@
+{
+  "version": 1,
+  "note": "Card text: three sentences at most per step. Placeholders in braces are filled by app.js from data/results.json; a value missing from that file reads 'not available'.",
+  "steps": [
+    {
+      "n": 1,
+      "slug": "dance",
+      "title": "The dance",
+      "view": {
+        "center": [
+          84.1,
+          27.0
+        ],
+        "zoom": 9
+      },
+      "layers": {
+        "hh_20260706": 1,
+        "hh_20260823": 0,
+        "hh_20260904": 0,
+        "hh_20260916": 0,
+        "hh_20260928": 0,
+        "hh_20261010": 0,
+        "hh_20261022": 0
+      },
+      "text": "This is the Gandak river in Bihar, India, seen every 12 days from July to October 2026 by NISAR, a radar satellite from NASA and ISRO. Smooth water bounces the radar away like a mirror, so it looks dark, while fields, trees and towns look gray or bright. Watch the dark water spread across the plain after the river's record flood on 27 September.",
+      "extras": {
+        "type": "dance",
+        "dates": [
+          "hh_20260706",
+          "hh_20260823",
+          "hh_20260904",
+          "hh_20260916",
+          "hh_20260928",
+          "hh_20261010",
+          "hh_20261022"
+        ],
+        "ms_per_date": 1000,
+        "fade_ms": 500,
+        "replay_label": "Play again",
+        "slider_label": "Pick a date"
+      },
+      "legend": [
+        {
+          "gradient": [
+            "#000000",
+            "#ffffff"
+          ],
+          "label": "Radar brightness (HH), dark water to bright towns"
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "slug": "two-radars",
+      "title": "Two radars",
+      "view": {
+        "center": [
+          84.12,
+          27.02
+        ],
+        "zoom": 10
+      },
+      "text": "Two radar satellites mapped this flood {s1_offset_h} hours apart: Sentinel-1 on {s1_post_time} (left) and NISAR on {nisar_post_time} (right). Drag the slider to compare their flood maps, made with the same rules. Blue is open water; orange is NISAR's flooded-vegetation flag, a jump in HH that water under plants causes, though rough water in the river channel can too.",
+      "extras": {
+        "type": "compare",
+        "left": {
+          "layers": {
+            "hh_20260928": 1,
+            "s1_twosided": 1
+          },
+          "label": "Sentinel-1",
+          "time": "{s1_post_time}"
+        },
+        "right": {
+          "layers": {
+            "hh_20260928": 1,
+            "nisar_twosided": 1
+          },
+          "label": "NISAR",
+          "time": "{nisar_post_time}"
+        },
+        "slider_start": 0.5
+      },
+      "legend": [
+        {
+          "color": "#0072B2",
+          "label": "Open water"
+        },
+        {
+          "color": "#E69F00",
+          "label": "Flooded-vegetation flag (NISAR only)"
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "slug": "hidden-steps",
+      "title": "The hidden steps",
+      "view": {
+        "center": [
+          84.0221,
+          26.9546
+        ],
+        "zoom": 12
+      },
+      "layers": {
+        "hh_20260928": 1,
+        "hidden": 1
+      },
+      "text": "Orange marks low ground under trees where NISAR's radar shows signs of water beneath the leaves and Sentinel-1 saw dry land. {claim2_line} This is evidence, not verified: no satellite can check the ground under the canopy.",
+      "fail": {
+        "title": "Where L-band helps and where it doesn't",
+        "text": "Orange marks low ground under trees where NISAR's flooded-vegetation flag fired on 28 Sep and Sentinel-1 saw dry land. Compared with the 12 days before the flood, NISAR flagged {claim2_km2} km² more here ({claim2_ci}), and that range includes zero, so we do not claim a signal. Under trees, growing crops and wet soil can brighten the radar much as water does."
+      },
+      "extras": {
+        "type": "hidden",
+        "badge": "Evidence, not verified",
+        "diagrams": [
+          {
+            "id": "mirror",
+            "caption": "Open water is a mirror: the radar bounces away and little comes back, so water looks dark in both HH and HV."
+          },
+          {
+            "id": "double-bounce",
+            "caption": "Water under trees: the radar bounces off the water onto a trunk and straight back, so HH turns bright while HV changes much less."
+          }
+        ],
+        "diagram_note": "Diagram made with AI assistance",
+        "more_title": "How the cut-offs were set, and a caution",
+        "more": "HH and HV are two ways the radar sends and hears its signal: HH sends and receives horizontal waves, HV sends horizontal and receives vertical. A pixel counts as flooded vegetation when HH rose by at least 3 dB in the 12 days and rose at least 2 dB more than HV; both cut-offs were fixed before the event on physical reasoning, because we found no published L-band flood threshold to cite. A caution: {hidden_near_built_pct}% of the orange pixels sit near buildings, against {set_near_built_pct}% of all the low tree-covered ground we checked, and walls beside trees can bounce the radar much as water does."
+      },
+      "legend": [
+        {
+          "color": "#E69F00",
+          "label": "Hidden steps: flooded vegetation, evidence, not verified"
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "slug": "listen",
+      "title": "Listen",
+      "view": {
+        "center": [
+          84.15,
+          27.08
+        ],
+        "zoom": 10
+      },
+      "layers": {
+        "hh_20260928": 1,
+        "hidden": 0.7
+      },
+      "text": "Tap anywhere on the map to see how the radar signal there changed over the seven dates, with the flood date marked. Press Listen to hear the same values: the higher voice is HH, the lower one is HV, and a stronger signal plays higher and louder. Open water drops low and quiet, while flooded trees jump up in HH only.",
+      "extras": {
+        "type": "listen",
+        "prompt": "Tap the map to pick a place.",
+        "places_title": "Try these places",
+        "places": [
+          {
+            "name": "A flooded field",
+            "lon": 84.01155,
+            "lat": 27.19302,
+            "zoom": 13,
+            "why": "cropland cell with the largest share of NISAR new open water on 28 Sep"
+          },
+          {
+            "name": "A flooded grove",
+            "lon": 84.02209,
+            "lat": 26.95464,
+            "zoom": 13,
+            "why": "the cell with the largest share of hidden-steps pixels"
+          },
+          {
+            "name": "A dry town",
+            "lon": 84.32994,
+            "lat": 27.15335,
+            "zoom": 13,
+            "why": "the most built-up cell with no flood flag"
+          }
+        ]
+      },
+      "legend": [
+        {
+          "color": "#E69F00",
+          "label": "Hidden steps (evidence, not verified)"
+        }
+      ]
+    },
+    {
+      "n": 5,
+      "slug": "how-we-know",
+      "title": "How we know",
+      "view": {
+        "center": [
+          82.79,
+          27.28
+        ],
+        "zoom": 10
+      },
+      "text": "Optical satellites see water directly when there are no clouds, so we used them to check NISAR. In the west, the green line is new water on the 29 Sep Sentinel-2 map; at Bagaha clouds hid every optical pass, so the pink line is Sentinel-1's own map instead. Gray hatching marks strips where NISAR's image is not fully focused on one of the dates, where a naive difference shows fake change.",
+      "extras": {
+        "type": "check",
+        "views": [
+          {
+            "name": "Western frame",
+            "center": [
+              82.79,
+              27.28
+            ],
+            "zoom": 10
+          },
+          {
+            "name": "Bagaha",
+            "center": [
+              84.09,
+              27.1
+            ],
+            "zoom": 11
+          }
+        ],
+        "modes": {
+          "trust": {
+            "label": "What we trust",
+            "layers": {
+              "lr_valid": 0.85,
+              "gaps": 1,
+              "referee_1a": 1,
+              "dswx_s1_outline": 1
+            }
+          },
+          "naive": {
+            "label": "Naive difference",
+            "layers": {
+              "lr_raw": 0.85,
+              "referee_1a": 1,
+              "dswx_s1_outline": 1
+            }
+          }
+        },
+        "default_mode": "trust",
+        "numbers_title": "The numbers",
+        "f1_note": "F1 runs from 0 to 1, where 1 means a radar map matched the optical water exactly.",
+        "limits": {
+          "title": "What this can't tell you",
+          "items": [
+            "How accurate the map is under canopy. No reference sees there, so claim 2 is evidence of a signal, not an accuracy figure.",
+            "Damage. Flooded and built-up is not the same as damaged.",
+            "Global performance. This is one flood in Bihar.",
+            "Real-time use. Each NISAR pass direction repeats every 12 days and products arrive 36 to 72 hours later, so NISAR fills Sentinel-1's blind spots rather than replacing its revisit.",
+            "Final calibration. These are PROVISIONAL products; the validated reprocessing is due by the end of 2026."
+          ]
+        },
+        "failures_title": "Where NISAR got it wrong",
+        "failures": [
+          {
+            "title": "Water that was already there.",
+            "text": "Of the {fail_missed_px} optical new-water pixels NISAR missed, {fail_dark_pct}% were already dark on 16 Sep, so a change detector cannot call them new; the optical check had no clear pre-flood map to leave them out, and {s1_dark_pct}% of the pixels Sentinel-1 missed were likewise already dark on 17 Sep."
+          },
+          {
+            "title": "Rough river water.",
+            "text": "Fast, rough water in the main channel can brighten HH much as tree trunks do; where Sentinel-1's own map has data, {fail_flag_on_s1_water_pct}% of NISAR's flooded-vegetation flags fall on water it saw, and claim 2 counts only pixels Sentinel-1 called dry."
+          },
+          {
+            "title": "Growing crops.",
+            "text": "On cropland, NISAR's flags in the flood interval minus those in the 12 days before come to {crop_km2} km² ({crop_ci}); growing crops and wetter soil can brighten HH in either interval, so there the flag cannot tell hidden water from crop change."
+          },
+          {
+            "title": "Near villages and towns.",
+            "text": "{hidden_near_built_pct}% of the hidden-steps pixels sit within about 140 m of buildings, against {set_near_built_pct}% of all the low tree-covered ground we checked, so some flags may come from walls beside trees rather than water."
+          }
+        ]
+      },
+      "legend": [
+        {
+          "outline": "#009E73",
+          "label": "Optical new water, 29 Sep (west)"
+        },
+        {
+          "outline": "#CC79A7",
+          "label": "Sentinel-1's own map (DSWx-S1)"
+        },
+        {
+          "hatch": true,
+          "label": "Swath gap: NISAR image not fully focused"
+        },
+        {
+          "gradient": [
+            "#b2182b",
+            "#f7f7f7",
+            "#2166ac"
+          ],
+          "label": "HH change: red darker (water arrived), blue brighter"
+        }
+      ]
+    }
+  ],
+  "explore": {
+    "title": "Explore",
+    "text": "Turn any layer on or off; each has a legend and a one-line note. Layers that are still being computed are grayed out.",
+    "pins_text": "The pin marks Areraj, one of six places where news reports say embankments broke on the night of 29 to 30 Sep (India time), after both radar passes. The other five villages could not be placed on OpenStreetMap.",
+    "default_layers": {
+      "hh_20260928": 1
+    },
+    "extra_layers": [
+      {
+        "id": "gaps",
+        "title": "Swath gaps",
+        "description": "Strips where NISAR's 16 or 28 Sep image is not fully focused (the swath gaps), drawn from the valid mask.",
+        "legend": [
+          {
+            "hatch": true,
+            "label": "NISAR image not fully focused"
+          }
+        ]
+      }
+    ]
+  },
+  "about": {
+    "title": "Dancing with the SARS: The Hidden Steps",
+    "line": "NASA Space Apps 2026, built in 39 hours.",
+    "repo": "https://github.com/dmanpark/dancing-with-the-sars",
+    "ai_use": "https://github.com/dmanpark/dancing-with-the-sars/blob/main/docs/AI_USE.md",
+    "basemap": "Basemap by OpenFreeMap, map data from OpenStreetMap contributors via OpenMapTiles."
+  }
+}

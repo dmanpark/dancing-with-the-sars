@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "description": "How the listening step turns a cell's HH and HV backscatter on the seven dates into sound. Read by app/app.js and by the offline WAV renderer.",
+  "beat_s": 0.45,
+  "lead_in_s": 0.05,
+  "nodata": 255,
+  "decode": "dB = value / 4 - 40",
+  "master_gain": 0.6,
+  "scale": {
+    "name": "major pentatonic",
+    "intervals": [0, 2, 4, 7, 9],
+    "steps": 10
+  },
+  "voices": {
+    "hh": {
+      "label": "HH",
+      "character": "plucked",
+      "waveform": "triangle",
+      "base_midi": 60,
+      "db_min": -30,
+      "db_max": 0,
+      "gain_min": 0.1,
+      "gain_max": 0.45,
+      "attack_s": 0.005,
+      "decay_s": 0.4
+    },
+    "hv": {
+      "label": "HV",
+      "character": "soft, one octave lower",
+      "waveform": "sine",
+      "base_midi": 48,
+      "db_min": -35,
+      "db_max": -5,
+      "gain_min": 0.06,
+      "gain_max": 0.25,
+      "attack_s": 0.04,
+      "decay_s": 0.4
+    }
+  },
+  "mapping": "For each date k (0 to 6, in index order) and each voice v (hh, hv): read the byte b. If b == nodata (255) the voice is silent on that beat. Otherwise dB = b / 4 - 40. x = clamp((dB - v.db_min) / (v.db_max - v.db_min), 0, 1). s = min(scale.steps - 1, floor(x * scale.steps)). n = len(scale.intervals). midi = v.base_midi + 12 * floor(s / n) + scale.intervals[s mod n]. freq_hz = 440 * 2 ** ((midi - 69) / 12). peak = v.gain_min + (v.gain_max - v.gain_min) * x. The note starts at t0 = lead_in_s + k * beat_s seconds with an oscillator of shape v.waveform (Web Audio names: sine, triangle) at freq_hz and phase 0. Its amplitude is 0 at t0, rises linearly to peak at t0 + v.attack_s, then decays as peak * exp(-(t - t0 - v.attack_s) / (v.decay_s / 5)) and the note stops at t0 + v.attack_s + v.decay_s. All notes are summed and multiplied by master_gain. Pitch (through s) and loudness (through x) never decrease when dB increases, in both voices, so the mapping is monotonic. With these values the summed peak is at most master_gain * (0.45 + 0.25) = 0.42 of full scale, and one clip lasts lead_in_s + 6 * beat_s + 0.405 s = 3.155 s."
+}

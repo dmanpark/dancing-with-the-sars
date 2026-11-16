@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dancing with the SARS: The Hidden Steps</title>
+<meta name="description" content="NISAR's L-band radar finds flood water hiding under trees that C-band radar flood maps miss. An interactive tour of Bihar's Gandak flood of 28 Sep 2026: watch it, compare two radars, and listen to a field's radar signal.">
+<meta name="theme-color" content="#ffffff">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preconnect" href="https://tiles.openfreemap.org" crossorigin>
+<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/maplibre-gl@6.18.0/dist/maplibre-gl.mjs" crossorigin>
+<link rel="preload" href="https://tiles.openfreemap.org/styles/positron" as="fetch" crossorigin>
+<link rel="preload" href="https://tiles.openfreemap.org/planet" as="fetch" crossorigin>
+<link rel="preload" href="https://tiles.openfreemap.org/fonts/Noto%20Sans%20Regular/0-255.pbf" as="fetch" crossorigin><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/maplibre-gl@6.18.0/dist/maplibre-gl.css" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@maplibre/maplibre-gl-compare@0.5.0/dist/maplibre-gl-compare.css" crossorigin>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/pmtiles@4.5.0/dist/pmtiles.js" crossorigin></script>
+<script type="module" src="app.js"></script>
+</head>
+<body>
+<div id="app">
+  <main id="maps" aria-label="Map">
+    <div id="map" class="map"></div>
+    <div id="map-b" class="map" aria-hidden="true"></div>
+    <div id="side-labels" hidden>
+      <div class="side-label left"><strong id="side-left-name"></strong><span id="side-left-time"></span></div>
+      <div class="side-label right"><strong id="side-right-name"></strong><span id="side-right-time"></span></div>
+    </div>
+    <div id="legend" class="chip" hidden></div>
+    <div id="date-badge" aria-live="polite" hidden></div>
+    <button id="mute" class="chip" type="button" aria-pressed="false" hidden>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path class="waves" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path class="cross" d="M16 9l5 6M21 9l-5 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      <span id="mute-label">Sound on</span>
+    </button>
+    <div id="endcard" hidden>
+      <h2 id="endcard-title"></h2>
+      <p id="endcard-link"></p>
+    </div>
+  </main>
+  <aside id="card" aria-label="Tour">
+    <button id="card-handle" type="button" aria-label="Show more of the card" aria-expanded="false"><span></span></button>
+    <header id="card-head">
+      <p id="step-num" class="kicker">Step 1 of 5</p>
+      <h1 id="card-title">Dancing with the SARS</h1>
+    </header>
+    <div id="card-body" tabindex="-1">
+      <p id="card-text" class="lead">Loading the tour.</p>
+      <div id="card-extras"></div>
+      <footer id="about"></footer>
+    </div>
+    <nav id="card-nav" aria-label="Tour navigation">
+      <button id="btn-back" type="button">Back</button>
+      <div id="dots" role="group" aria-label="Go to step"></div>
+      <button id="btn-next" type="button" class="primary">Next</button>
+      <button id="btn-explore" type="button" class="ghost">Explore</button>
+    </nav>
+  </aside>
+</div>
+<noscript><p class="noscript">This tour needs JavaScript to draw the map.</p></noscript>
+</body>
+</html>

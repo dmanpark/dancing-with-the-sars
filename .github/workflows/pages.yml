@@ -1,0 +1,45 @@
+# Deploy the app (prompts/build.md Phase 3 step 1): code from main, tiles and the listening grid
+# from the orphan `tiles` branch, the video timeline from video/, then GitHub Pages.
+name: pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/checkout@v7.0.1
+        with:
+          ref: tiles
+          path: tiles-src
+      - name: Assemble the site
+        run: |
+          mkdir -p app/tiles app/data/listen
+          cp tiles-src/tiles/*.pmtiles app/tiles/
+          if [ -d tiles-src/listen ]; then cp -r tiles-src/listen/. app/data/listen/; fi
+          if [ -f video/timeline.json ]; then cp video/timeline.json app/data/timeline.json; fi
+          touch app/.nojekyll
+          du -sh app
+          test -z "$(find app -size +95M)"
+      - uses: actions/configure-pages@v6.0.0
+      - uses: actions/upload-pages-artifact@v5.0.0
+        with:
+          path: app
+      - id: deployment
+        uses: actions/deploy-pages@v5.0.1

@@ -1,0 +1,30 @@
+# The `dwts` environment the build ran in (conda env export --from-history, 14 Nov 2026).
+# Versions used: Python 3.11.18, GDAL 3.10.3, numpy 2.4.6, scipy 1.17.1, h5py 3.16.0, rasterio 1.4.4,
+# scikit-learn 1.9.1, matplotlib 3.11.2, ffmpeg 9.0.2, playwright 1.64.1 (pip). The pmtiles CLI 1.31.2
+# is a separate binary from https://github.com/protomaps/go-pmtiles/releases.
+name: dwts
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - numpy
+  - scipy
+  - h5py
+  - rasterio
+  - gdal
+  - xarray
+  - rioxarray
+  - pyproj
+  - shapely
+  - geopandas
+  - scikit-learn
+  - matplotlib
+  - pyyaml
+  - pillow
+  - earthaccess
+  - asf_search
+  - pytest
+  - ffmpeg
+  - pip
+  - pip:
+      - playwright==1.64.1

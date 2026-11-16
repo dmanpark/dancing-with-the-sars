@@ -1,0 +1,96 @@
+{
+  "version": 1,
+  "description": "Storyboard for the 30-second video (docs/overview.md, 'The 30-second video'). Times in seconds from the moment the app starts the storyboard (window.__dwts.videoStartMs); before that the app visits every view once so each shot draws from its first frame, and the renderer cuts that warm-up. The page plays no sound in video mode; the renderer mixes the tapped cell's sound offline from app/data/sound.json at tap.t_s, and burns in the captions listed here by id. Step 5 opens on what we trust (drawn from the warm-up) and switches once to the naive difference, which loads unseen at opacity 0 meanwhile; the end card holds the last 2.5 s; the total stays under 30.0 s.",
+  "duration_s": 29.9,
+  "viewport": [
+    1920,
+    1080
+  ],
+  "fly_ms": 600,
+  "dance_ms_per_date": 700,
+  "tap": {
+    "t_s": 20.5,
+    "lon": 84.01155,
+    "lat": 27.19302,
+    "zoom": 13,
+    "note": "the flooded field from step 4's places (dwts/places.py)"
+  },
+  "end": {
+    "title": "Dancing with the SARS: The Hidden Steps",
+    "link": "dmanpark.github.io/dancing-with-the-sars"
+  },
+  "events": [
+    {
+      "t_s": 0.0,
+      "do": "step",
+      "step": 1
+    },
+    {
+      "t_s": 5.0,
+      "do": "step",
+      "step": 2,
+      "slider": 1.0
+    },
+    {
+      "t_s": 11.0,
+      "do": "slider",
+      "from": 1.0,
+      "to": 0.12,
+      "duration_s": 7.5
+    },
+    {
+      "t_s": 19.0,
+      "do": "step",
+      "step": 4
+    },
+    {
+      "t_s": 20.5,
+      "do": "tap"
+    },
+    {
+      "t_s": 24.0,
+      "do": "step",
+      "step": 5
+    },
+    {
+      "t_s": 25.8,
+      "do": "mode",
+      "mode": "naive"
+    },
+    {
+      "t_s": 27.4,
+      "do": "endcard"
+    },
+    {
+      "t_s": 29.9,
+      "do": "done"
+    }
+  ],
+  "captions": [
+    {
+      "id": "c1_dance",
+      "start_s": 0.0,
+      "end_s": 5.0
+    },
+    {
+      "id": "c2_sentinel1",
+      "start_s": 5.0,
+      "end_s": 11.0
+    },
+    {
+      "id": "c3_slider",
+      "start_s": 11.0,
+      "end_s": 19.0
+    },
+    {
+      "id": "c4_listen",
+      "start_s": 19.0,
+      "end_s": 24.0
+    },
+    {
+      "id": "c5_check",
+      "start_s": 24.0,
+      "end_s": 29.9
+    }
+  ]
+}
